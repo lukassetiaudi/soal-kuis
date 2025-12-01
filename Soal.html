@@ -2,1691 +2,1225 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Kuis Bahasa Indonesia Bab 3 & 4</title>
+  <title>Kuis Interaktif PPKn – Pancasila Bab 2 Aturan (40 Soal)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* ====== GLOBAL STYLE & GRADIENT ====== */
     * {
       box-sizing: border-box;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      padding: 16px;
       background: linear-gradient(135deg, #a855f7, #ec4899, #38bdf8);
-      background-size: 400% 400%;
+      background-size: 300% 300%;
       animation: gradientMove 12s ease infinite;
     }
 
     @keyframes gradientMove {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .quiz-wrapper {
-      width: 95%;
-      max-width: 900px;
-      background: rgba(255, 255, 255, 0.94);
-      border-radius: 24px;
-      padding: 20px 24px 26px;
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.25);
-      backdrop-filter: blur(6px);
-    }
-
-    @media (max-width: 768px) {
-      .quiz-wrapper {
-        padding: 16px 14px 20px;
-        border-radius: 18px;
-      }
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .title-area {
-      flex: 1;
-    }
-
-    .title-area h1 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: #1f2933;
-    }
-
-    .title-area p {
-      margin: 4px 0 0;
-      font-size: 0.9rem;
-      color: #4b5563;
-    }
-
-    .icon-bounce {
-      font-size: 2.4rem;
-      animation: floatIcon 2.8s ease-in-out infinite;
-    }
-
-    @keyframes floatIcon {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
-    }
-
-    .stage-strip {
-      margin-top: 10px;
-      height: 26px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #0ea5e9, #ec4899, #8b5cf6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: #f9fafb;
-      font-size: 0.78rem;
-      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stage-strip::before {
-      content: "";
-      position: absolute;
-      top: -60%;
-      left: -20%;
-      width: 40%;
-      height: 220%;
-      background: radial-gradient(
-        circle at center,
-        rgba(255, 255, 255, 0.9),
-        transparent 60%
-      );
-      opacity: 0.4;
-      animation: spotlightMove 6s linear infinite;
-    }
-
-    @keyframes spotlightMove {
-      0% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(220%);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    .stage-strip span {
-      white-space: nowrap;
-    }
-
-    /* ====== BUTTONS ====== */
-    .btn {
-      border: none;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        background 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #a855f7, #ec4899);
-      color: white;
-      box-shadow: 0 10px 20px rgba(148, 51, 234, 0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px) scale(1.01);
-      box-shadow: 0 14px 26px rgba(148, 51, 234, 0.45);
-    }
-
-    .btn-outline {
-      background: white;
-      color: #7c3aed;
-      border: 1px solid rgba(148, 51, 234, 0.5);
-    }
-
-    .btn-outline:hover {
-      background: rgba(148, 51, 234, 0.04);
-      transform: translateY(-1px);
-    }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 0.8rem;
-    }
-
-    /* ====== MENU SCREEN ====== */
-    #menu-screen {
-      text-align: center;
-      padding: 10px 6px 2px;
-    }
-
-    .menu-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 14px;
-      margin-bottom: 14px;
-    }
-
-    .menu-note {
-      font-size: 0.85rem;
-      color: #6b7280;
-      margin-top: 10px;
-    }
-
-    /* ====== QUIZ SCREEN ====== */
-    #quiz-screen {
-      display: none;
-    }
-
-    .quiz-header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-size: 0.85rem;
-      color: #4b5563;
-    }
-
-    .badge {
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .badge-mode {
-      background: rgba(129, 140, 248, 0.18);
-      color: #4338ca;
-    }
-
-    .badge-progress {
-      background: rgba(251, 113, 133, 0.18);
-      color: #be123c;
-    }
-
-    .badge-score {
-      background: rgba(45, 212, 191, 0.16);
-      color: #0f766e;
-    }
-
-    .question-card {
-      background: #f9fafb;
-      border-radius: 18px;
-      padding: 14px 14px 16px;
-      border: 1px solid rgba(209, 213, 219, 0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .question-icon-bg {
-      position: absolute;
-      right: -8px;
-      top: -10px;
-      font-size: 3rem;
-      opacity: 0.08;
-      pointer-events: none;
-      animation: spinIcon 10s linear infinite;
-    }
-
-    @keyframes spinIcon {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* ====== STORY BOX (opsional) ====== */
-    .story-box {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 12px;
-      padding: 8px 10px;
-      margin-bottom: 8px;
-      font-size: 0.85rem;
-      color: #1e3a8a;
-      max-height: 180px;
-      overflow-y: auto;
-    }
-
-    .story-box strong {
-      color: #1d4ed8;
-    }
-
-    .question-text {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      color: #111827;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ====== OPTIONS ====== */
-    .options-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .option-btn {
       width: 100%;
-      text-align: left;
-      border-radius: 999px;
-      border: 1px solid rgba(209, 213, 219, 0.9);
-      background: white;
-      padding: 8px 12px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.2s ease,
-        background 0.2s ease;
+      max-width: 900px;
+      position: relative;
     }
 
-    .option-btn span.option-label {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(129, 140, 248, 0.14);
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      padding: 24px 20px 28px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .float-icon {
+      position: absolute;
+      font-size: 54px;
+      opacity: 0.15;
+      animation: floatUp 12s linear infinite;
+      pointer-events: none;
+    }
+
+    .float-icon.one {
+      top: 65%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    .float-icon.two {
+      top: -10%;
+      right: 10%;
+      animation-delay: 3s;
+    }
+    .float-icon.three {
+      bottom: -10%;
+      right: 40%;
+      animation-delay: 6s;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(40px) rotate(0deg); opacity: 0.2; }
+      50% { transform: translateY(-10px) rotate(10deg); opacity: 0.35; }
+      100% { transform: translateY(-60px) rotate(-10deg); opacity: 0.1; }
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .quiz-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #4338ca;
-      flex-shrink: 0;
+      background: radial-gradient(circle at 30% 20%, #f9a8ff, #a855f7);
+      box-shadow: 0 10px 20px rgba(168, 85, 247, 0.5);
+      animation: popIcon 1s ease-out;
     }
 
-    .option-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 14px rgba(148, 163, 184, 0.35);
-      border-color: rgba(129, 140, 248, 0.8);
-      background: linear-gradient(
-        135deg,
-        rgba(236, 72, 153, 0.06),
-        rgba(56, 189, 248, 0.04)
-      );
+    .quiz-icon span {
+      font-size: 28px;
     }
 
-    .option-btn.disabled {
-      pointer-events: none;
-      opacity: 0.8;
+    @keyframes popIcon {
+      0% { transform: scale(0.3) rotate(-20deg); opacity: 0; }
+      60% { transform: scale(1.05) rotate(5deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* ====== SHORT ANSWER ====== */
-    .short-input-area {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 4px;
-      position: relative;
-      z-index: 1;
+    .quiz-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.25;
     }
 
-    .short-input-area input,
-    .short-input-area textarea {
-      border-radius: 16px;
-      border: 1px solid rgba(209, 213, 219, 0.9);
-      padding: 8px 12px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border 0.2s ease, box-shadow 0.2s ease;
-      resize: vertical;
-    }
-
-    .short-input-area input:focus,
-    .short-input-area textarea:focus {
-      border-color: #ec4899;
-      box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.25);
-    }
-
-    .short-input-area small {
-      font-size: 0.78rem;
+    .quiz-subtitle {
+      font-size: 0.9rem;
       color: #6b7280;
     }
 
-    /* ====== FEEDBACK ====== */
-    #feedback {
-      margin-top: 12px;
-      min-height: 40px;
-      font-size: 0.9rem;
-    }
-
-    .feedback-box {
-      display: inline-flex;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 16px;
-      animation: popIn 0.2s ease-out;
-    }
-
-    .feedback-box.correct {
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(22, 163, 74, 0.6);
-      color: #166534;
-    }
-
-    .feedback-box.wrong {
-      background: rgba(248, 113, 113, 0.12);
-      border: 1px solid rgba(220, 38, 38, 0.65);
-      color: #b91c1c;
-    }
-
-    .feedback-icon {
-      font-size: 1.4rem;
-      line-height: 1;
-      margin-top: 1px;
-    }
-
-    .feedback-text strong {
-      display: block;
-    }
-
-    .explanation {
-      margin-top: 4px;
-      font-size: 0.85rem;
-      color: #374151;
-    }
-
-    @keyframes popIn {
-      0% {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    /* ====== FOOTER NAVBAR ====== */
-    .quiz-footer {
-      margin-top: 12px;
+    .quiz-progress {
+      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      font-size: 0.8rem;
-      color: #6b7280;
+      font-size: 0.9rem;
+      color: #4b5563;
     }
 
     .progress-bar {
-      flex: 1;
-      height: 7px;
+      width: 100%;
+      height: 8px;
       border-radius: 999px;
       background: #e5e7eb;
       overflow: hidden;
+      margin-top: 6px;
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
-      border-radius: inherit;
+      border-radius: 999px;
       background: linear-gradient(90deg, #a855f7, #ec4899, #38bdf8);
-      transition: width 0.25s ease;
+      box-shadow: 0 0 8px rgba(236, 72, 153, 0.7);
+      transition: width 0.4s ease;
     }
 
-    /* ====== RESULT ====== */
-    #result-screen {
-      display: none;
-      text-align: center;
-      padding-top: 8px;
+    .question-card {
+      margin-top: 8px;
+      background: linear-gradient(135deg, #f9fafb, #eef2ff);
+      border-radius: 20px;
+      padding: 18px 16px 18px;
+      border: 1px solid rgba(129, 140, 248, 0.4);
     }
 
-    #result-screen h2 {
-      margin: 0 0 6px;
+    .question-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 14px;
     }
 
-    #result-screen p {
-      margin: 4px 0;
-      font-size: 0.92rem;
+    .topic-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(236, 72, 153, 0.08);
+      color: #be185d;
+      margin-bottom: 8px;
+    }
+
+    .topic-tag span {
+      font-size: 0.9rem;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .option-btn {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #ffffff;
+      padding: 9px 11px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.94rem;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(148, 163, 184, 0.55);
+      border-color: #a855f7;
+    }
+
+    .option-label {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eff6ff;
+      color: #4f46e5;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .option-text {
+      flex: 1;
+      color: #111827;
+    }
+
+    .option-btn.correct {
+      background: linear-gradient(135deg, #ecfeff, #dcfce7);
+      border-color: #22c55e;
+      box-shadow: 0 10px 22px rgba(34, 197, 94, 0.45);
+    }
+
+    .option-btn.incorrect {
+      background: linear-gradient(135deg, #fef2f2, #fee2e2);
+      border-color: #ef4444;
+      box-shadow: 0 10px 22px rgba(239, 68, 68, 0.45);
+    }
+
+    .option-btn.disabled {
+      cursor: default;
+      opacity: 0.9;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .feedback-area {
+      margin-top: 14px;
+      min-height: 70px;
+    }
+
+    .feedback-message {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .feedback-icon {
+      font-size: 1.35rem;
+    }
+
+    .feedback-text-correct {
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .feedback-text-incorrect {
+      color: #b91c1c;
+      font-weight: 600;
+    }
+
+    .explanation {
+      font-size: 0.86rem;
       color: #4b5563;
+      background: rgba(248, 250, 252, 0.96);
+      border-radius: 12px;
+      padding: 8px 10px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bottom-bar {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .auto-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .auto-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+      animation: pulseDot 1.5s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .question-count {
+      font-weight: 600;
+      color: #4f46e5;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .result-view {
+      text-align: center;
+      padding: 20px 10px 8px;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .result-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 10px;
     }
 
     .result-icon {
-      font-size: 3rem;
+      font-size: 50px;
       margin-bottom: 6px;
-      animation: floatIcon 3s ease-in-out infinite;
+      animation: popIcon 0.8s ease-out;
+    }
+
+    .result-score {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #4b5563;
+    }
+
+    .result-score span {
+      font-weight: 700;
+      color: #4f46e5;
+    }
+
+    .result-note {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #f9fafb;
+      background: linear-gradient(135deg, #a855f7, #ec4899, #38bdf8);
+      box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-card {
+        padding: 18px 14px 20px;
+        border-radius: 18px;
+      }
+      .quiz-title {
+        font-size: 1.05rem;
+      }
+      .question-text {
+        font-size: 0.96rem;
+      }
+      .option-btn {
+        font-size: 0.9rem;
+        padding: 8px 9px;
+      }
+      .float-icon {
+        font-size: 42px;
+      }
     }
 
     @media (max-width: 480px) {
-      .header {
+      .quiz-header {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .quiz-title {
+        font-size: 1rem;
+      }
+      .quiz-subtitle {
+        font-size: 0.8rem;
+      }
+      .question-card {
+        padding: 14px 10px 14px;
+      }
+      .bottom-bar {
         flex-direction: column;
         align-items: flex-start;
       }
-      .icon-bounce {
-        align-self: flex-end;
+      .float-icon {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
   <div class="quiz-wrapper">
-    <div class="header">
-      <div class="title-area">
-        <h1>📚 Kuis Bahasa Indonesia Bab 3 & 4</h1>
-        <p>
-          Latihan ide pokok, ringkasan, teks eksplanasi, dongeng, ungkapan, dan
-          tanggapan.
-        </p>
-        <div class="stage-strip">
-          <span>✨ Ayo asah kemampuan bahasa Indonesia-mu dengan seru! ✨</span>
-        </div>
-      </div>
-      <div class="icon-bounce">✏️💡</div>
-    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="float-icon one">⚖️</div>
+      <div class="float-icon two">⭐</div>
+      <div .class="float-icon three">🏠</div>
 
-    <!-- ===== MENU SCREEN ===== -->
-    <div id="menu-screen">
-      <p>Pilih jenis latihan yang ingin dikerjakan terlebih dahulu.</p>
-      <div class="menu-buttons">
-        <button class="btn btn-primary" onclick="startQuiz('mc')">
-          🎯 Mulai Pilihan Ganda
-        </button>
-        <button class="btn btn-outline" onclick="startQuiz('short')">
-          ✍️ Mulai Isian Singkat
-        </button>
-        <button class="btn btn-outline" onclick="startQuiz('essay')">
-          📖 Mulai Esai
-        </button>
-      </div>
-      <p class="menu-note">
-        Setelah menjawab, soal akan berpindah otomatis. Kamu bisa kembali ke
-        menu kapan saja. Semangat! 💪
-      </p>
-    </div>
-
-    <!-- ===== QUIZ SCREEN ===== -->
-    <div id="quiz-screen">
-      <div class="quiz-header-bar">
-        <div>
-          <span class="badge badge-mode" id="mode-badge"
-            >Mode: Pilihan Ganda</span
-          >
+      <div class="quiz-header">
+        <div class="quiz-icon">
+          <span>🇮🇩</span>
         </div>
         <div>
-          <span class="badge badge-progress" id="badge-progress"
-            >Soal 1 / 50</span
-          >
-          <span class="badge badge-score" id="badge-score">Skor: 0</span>
+          <div class="quiz-title">Kuis Interaktif PPKn – Pancasila Bab 2: Aturan (40 Soal)</div>
+          <div class="quiz-subtitle">Jawab dengan tenang, setelah memilih jawaban soal akan otomatis berganti.</div>
         </div>
       </div>
 
-      <div class="question-card">
-        <div class="question-icon-bg">📖</div>
-
-        <!-- STORY BOX (opsional) -->
-        <div class="story-box" id="story-box" style="display: none;"></div>
-
-        <p class="question-text" id="question-text"></p>
-
-        <!-- Multiple Choice Options -->
-        <ul class="options-list" id="options-list"></ul>
-
-        <!-- Short Answer Input -->
-        <div
-          class="short-input-area"
-          id="short-answer-area"
-          style="display: none;"
-        >
-          <input
-            type="text"
-            id="short-input"
-            placeholder="Ketik jawaban singkat (1–3 kata) di sini..."
-          />
-          <small
-            >Gunakan huruf kecil semua, misalnya:
-            <strong>ide pokok</strong>, <strong>dongeng</strong>,
-            <strong>fabel</strong>.</small
-          >
-          <button class="btn btn-primary btn-sm" onclick="submitShortAnswer()">
-            Kirim Jawaban ✨
-          </button>
+      <div class="quiz-progress">
+        <div>
+          Soal ke-<span id="currentNumber">1</span> dari <span id="totalNumber">40</span>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
         </div>
-
-        <!-- Essay Area -->
-        <div class="short-input-area" id="essay-area" style="display: none;">
-          <textarea
-            id="essay-input"
-            rows="4"
-            placeholder="Tulis jawaban esai di sini (minimal 2 kalimat)..."
-          ></textarea>
-          <small
-            >Jawaban esai tidak dinilai otomatis, tapi setelah dikirim kamu akan
-            melihat contoh jawaban. 😊</small
-          >
-          <button class="btn btn-primary btn-sm" onclick="submitEssay()">
-            Kirim Jawaban 📝
-          </button>
-        </div>
-
-        <div id="feedback"></div>
+        <div class="question-count" id="miniCounter">1 / 40</div>
       </div>
 
-      <div class="quiz-footer">
-        <button class="btn btn-outline btn-sm" onclick="backToMenu()">
-          ⬅️ Kembali ke Menu
-        </button>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
+      <div id="quizContent">
+        <div class="question-card">
+          <div class="topic-tag" id="topicTag">
+            <span>📘</span><span id="topicText">Pengantar</span>
+          </div>
+          <div class="question-text" id="questionText">
+            Pertanyaan akan muncul di sini.
+          </div>
+          <div class="options-list" id="optionsList"></div>
+          <div class="feedback-area" id="feedbackArea"></div>
         </div>
-        <span id="question-counter-label"></span>
-      </div>
-    </div>
 
-    <!-- ===== RESULT SCREEN ===== -->
-    <div id="result-screen">
-      <div class="result-icon" id="result-icon">🏆</div>
-      <h2 id="result-title">Keren!</h2>
-      <p id="result-detail"></p>
-      <p id="result-extra"></p>
-      <div style="margin-top: 10px;">
-        <button class="btn btn-primary" onclick="restartSameMode()">
-          🔁 Ulangi Mode Ini
-        </button>
-        <button class="btn btn-outline" onclick="backToMenuFromResult()">
-          🏠 Kembali ke Menu
+        <div class="bottom-bar">
+          <div class="auto-text">
+            <div class="auto-dot"></div>
+            <span>Soal akan <b>berpindah otomatis</b> setelah kamu memilih jawaban.</span>
+          </div>
+          <div>
+            Skor sementara: <b><span id="currentScore">0</span></b> benar
+          </div>
+        </div>
+      </div>
+
+      <div id="resultView" class="result-view hidden">
+        <div class="result-icon" id="resultIcon">🏅</div>
+        <div class="result-title" id="resultTitle">Selesai!</div>
+        <div class="result-score">
+          Kamu menjawab <span id="resultCorrect">0</span> dari <span id="resultTotal">40</span> soal dengan benar.
+        </div>
+        <div class="result-note" id="resultNote">
+          Terima kasih sudah berjuang sampai akhir! 😊
+        </div>
+        <button class="btn-primary" id="restartBtn">
+          <span class="icon">🔁</span>
+          <span>Ulangi Kuis</span>
         </button>
       </div>
     </div>
   </div>
 
   <script>
-    // ========= DATA SOAL PILIHAN GANDA (50) =========
-    const mcQuestions = [
-      // BAB 3: IDE POKOK & IDE PENDUKUNG
+    // ==============================
+    // DATA SOAL PANCASILA BAB 2 - ATURAN (40 SOAL)
+    // ==============================
+    const questions = [
+      // 1
       {
-        text: "1. Ide pokok adalah ....",
+        topic: "Pengertian Aturan",
+        question: "Apa yang dimaksud dengan aturan menurut catatan pelajaran?",
         options: [
-          "judul cerita",
-          "inti atau gagasan utama paragraf",
-          "contoh dalam paragraf"
+          "Hal yang boleh dilakukan kalau ingin saja",
+          "Tindakan yang harus dilakukan",
+          "Cerita yang menyenangkan",
+          "Mainan baru di sekolah"
         ],
         correctIndex: 1,
-        explanation:
-          "Ide pokok menjadi dasar penulisan dan inti dari suatu paragraf."
+        explanation: "Aturan adalah tindakan atau ketentuan yang harus dilakukan, bukan sekadar pilihan."
       },
+      // 2
       {
-        text: "2. Ide pendukung berfungsi untuk ....",
+        topic: "Tujuan Aturan",
+        question: "Aturan dibuat agar...",
         options: [
-          "mengulang ide pokok",
-          "menambahkan ilustrasi dan penjelasan ide pokok",
-          "mengisi halaman kosong"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Ide pendukung berisi informasi tambahan yang menjelaskan ide pokok."
-      },
-      {
-        text: "3. Di dalam paragraf, ide pokok biasanya terdapat pada ....",
-        options: ["judul buku", "kata pertama", "kalimat utama"],
-        correctIndex: 2,
-        explanation:
-          "Ide pokok biasanya terdapat dalam kalimat utama paragraf."
-      },
-      {
-        text: "4. Informasi tambahan dalam paragraf disebut ....",
-        options: ["ide pendukung", "amanat", "judul"],
-        correctIndex: 0,
-        explanation:
-          "Informasi tambahan yang menjelaskan inti paragraf disebut ide pendukung."
-      },
-      // WUJUD BENDA & PERUBAHANNYA
-      {
-        text: "5. Wujud benda dapat berupa padat, cair, dan ....",
-        options: ["beku", "gas", "dingin"],
-        correctIndex: 1,
-        explanation:
-          "Menurut catatan, wujud benda meliputi padat, cair, dan gas."
-      },
-      {
-        text: "6. Mencair adalah perubahan wujud dari ....",
-        options: [
-          "cair menjadi gas",
-          "padat menjadi cair",
-          "gas menjadi padat"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Mencair adalah perubahan wujud benda padat menjadi cair karena suhu tinggi."
-      },
-      {
-        text: "7. Contoh peristiwa mencair adalah ....",
-        options: [
-          "es batu meleleh",
-          "air mendidih",
-          "uap air menjadi embun"
+          "Kegiatan berjalan dengan lancar",
+          "Semua orang bingung",
+          "Suasana menjadi kacau",
+          "Tidak ada yang tertib"
         ],
         correctIndex: 0,
-        explanation: "Es batu yang meleleh adalah contoh peristiwa mencair."
+        explanation: "Aturan dibuat supaya kegiatan berjalan dengan lancar dan tertib."
       },
+      // 3
       {
-        text: "8. Suhu adalah ....",
+        topic: "Kewajiban Taat Aturan",
+        question: "Siapa yang harus menaati aturan?",
         options: [
-          "rasa di lidah",
-          "ukuran panas atau dingin",
-          "ukuran tinggi badan"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Suhu adalah ukuran panas atau dingin dari suatu benda atau tempat."
-      },
-      // MAKNA KATA & KATA SERAPAN
-      {
-        text: "9. Kata serapan adalah ....",
-        options: [
-          "kata yang salah tulis",
-          "kata bahasa Indonesia yang diambil dari bahasa lain",
-          "kata yang hanya ada di dongeng"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Kata serapan adalah kata bahasa Indonesia yang berasal dari bahasa lain."
-      },
-      {
-        text: "10. Gerobak adalah ....",
-        options: [
-          "kendaraan beroda untuk mengangkut barang",
-          "alat menumbuk padi",
-          "anyaman bambu untuk menampi beras"
-        ],
-        correctIndex: 0,
-        explanation:
-          "Gerobak adalah kendaraan beroda untuk mengangkut barang atau orang."
-      },
-      {
-        text: "11. Alu digunakan untuk ....",
-        options: [
-          "menyapu lantai",
-          "menumbuk padi di lesung",
-          "mengaduk minuman"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Alu adalah tongkat kayu untuk menumbuk padi dalam lesung."
-      },
-      {
-        text: "12. Tampah digunakan untuk ....",
-        options: [
-          "menyimpan pakaian",
-          "menampih atau menjemur beras",
-          "mengukur suhu"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tampah adalah anyaman bambu berbentuk bundar untuk menampih beras."
-      },
-      // RINGKASAN & TEKS EKSPLANASI
-      {
-        text: "13. Ringkasan adalah ....",
-        options: [
-          "tulisan yang sangat panjang",
-          "penyajian teks secara singkat dan padat",
-          "judul dari sebuah teks"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Ringkasan adalah penyajian tulisan yang singkat dan efektif dari teks yang panjang."
-      },
-      {
-        text: "14. Langkah pertama saat meringkas teks adalah ....",
-        options: [
-          "mengganti semua kata",
-          "membaca teks dengan saksama",
-          "menghapus bagian akhir"
-        ],
-        correctIndex: 1,
-        explanation: "Kita perlu mencermati atau membaca teks dengan saksama."
-      },
-      {
-        text: "15. Teks eksplanasi digunakan untuk menjelaskan ....",
-        options: [
-          "perasaan tokoh",
-          "proses atau peristiwa di sekitar kita",
-          "dialog dalam cerita"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Teks eksplanasi menjelaskan proses atau peristiwa alam, sosial, atau ilmu pengetahuan."
-      },
-      {
-        text: "16. Teks eksplanasi sering menjawab pertanyaan ....",
-        options: [
-          "siapa dan di mana",
-          "apa dan kapan",
-          "mengapa dan bagaimana"
+          "Hanya guru dan orang tua",
+          "Hanya siswa yang rajin",
+          "Semua orang",
+          "Hanya anak kecil"
         ],
         correctIndex: 2,
-        explanation:
-          "Ciri teks eksplanasi adalah menjawab pertanyaan mengapa dan bagaimana."
+        explanation: "Aturan harus ditaati oleh semua orang yang ada di lingkungan tersebut."
       },
+      // 4
       {
-        text: "17. Ciri teks eksplanasi adalah ....",
+        topic: "Manfaat Aturan",
+        question: "Manakah yang merupakan manfaat menaati aturan?",
         options: [
-          "bersifat imajinatif",
-          "bersifat ilmiah dan informatif",
-          "berisi tokoh dan dialog"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Teks eksplanasi bersifat ilmiah dan informatif, berdasarkan fakta."
-      },
-      // KALIMAT EFEKTIF & INFORMASI DARI GAMBAR
-      {
-        text: "18. Kalimat efektif harus memiliki minimal ....",
-        options: ["subjek dan predikat", "judul dan tokoh", "latar dan alur"],
-        correctIndex: 0,
-        explanation:
-          "Kalimat efektif minimal memiliki subjek (S) dan predikat (P)."
-      },
-      {
-        text: "19. Menentukan informasi dari gambar dapat dilakukan dengan melihat ....",
-        options: [
-          "tokoh, kegiatan, tempat, dan suasana",
-          "warna baju saja",
-          "jumlah pohon saja"
+          "Hidup menjadi rukun, tertib, dan disiplin",
+          "Hidup menjadi kacau",
+          "Tidak punya teman",
+          "Suasana jadi menakutkan"
         ],
         correctIndex: 0,
-        explanation:
-          "Informasi dari gambar dilihat dari tokoh, kegiatan, tempat/waktu, dan suasana."
+        explanation: "Menaati aturan membuat hidup rukun, tertib/teratur, dan melatih kita disiplin."
       },
+      // 5
       {
-        text: "20. Saat membuat kalimat berdasarkan gambar, kalimat harus ....",
+        topic: "Manfaat Aturan",
+        question: "Jika semua orang disiplin menaati aturan, maka...",
         options: [
-          "panjang sekali",
-          "menggunakan kata yang berkaitan dengan gambar",
-          "mengabaikan tokoh di gambar"
+          "Sering terjadi pertengkaran",
+          "Suasana menjadi rukun dan tertib",
+          "Sekolah menjadi kotor",
+          "Tidak ada yang mau belajar"
         ],
         correctIndex: 1,
-        explanation:
-          "Kalimat harus menggunakan kata yang berkaitan dengan gambar."
+        explanation: "Disiplin dalam menaati aturan membuat suasana menjadi rukun dan tertib."
       },
-
-      // BAB 4: DONGENG & JENISNYA
+      // 6
       {
-        text: "21. Dongeng adalah ....",
+        topic: "Aturan di Rumah",
+        question: "Aturan di rumah dibuat oleh...",
         options: [
-          "cerita yang selalu benar",
-          "cerita yang tidak benar-benar terjadi",
-          "catatan pelajaran"
+          "Tetangga",
+          "Seluruh keluarga",
+          "Teman bermain",
+          "Orang asing"
         ],
         correctIndex: 1,
-        explanation:
-          "Dongeng berasal dari imajinasi penulis dan tidak benar-benar terjadi."
+        explanation: "Aturan di rumah dibuat dan disepakati oleh seluruh anggota keluarga."
       },
+      // 7
       {
-        text: "22. Dongeng yang tokoh utamanya hewan disebut ....",
-        options: ["legenda", "fabel", "hikayat"],
-        correctIndex: 1,
-        explanation:
-          "Fabel adalah dongeng dengan tokoh utama hewan yang berperilaku seperti manusia."
-      },
-      {
-        text: "23. Dongeng tentang asal-usul suatu tempat disebut ....",
-        options: ["mite", "legenda", "fabel"],
-        correctIndex: 1,
-        explanation: "Legenda menceritakan asal-usul tempat, benda, atau peristiwa."
-      },
-      {
-        text: "24. Dongeng yang berkaitan dengan istana dan pangeran disebut ....",
-        options: ["hikayat", "mite", "fabel"],
-        correctIndex: 0,
-        explanation:
-          "Hikayat menceritakan pangeran, putri, raja, ratu, atau orang bijak."
-      },
-      {
-        text: "25. Mite adalah cerita tentang ....",
+        topic: "Aturan di Rumah",
+        question: "Contoh aturan di rumah adalah...",
         options: [
-          "perjuangan pahlawan",
-          "kesaktian dan hal yang suci",
-          "asal-usul sungai"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Mite berhubungan dengan kesaktian, hal ajaib, atau dewa dan kayangan."
-      },
-
-      // UNSUR PEMBANGUN DONGENG
-      {
-        text: "26. Tema dalam dongeng adalah ....",
-        options: [
-          "nama tokoh",
-          "gagasan utama atau pokok pikiran cerita",
-          "jumlah halaman buku"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tema adalah gagasan utama atau pokok pikiran yang mendasari cerita."
-      },
-      {
-        text: "27. Tokoh utama dalam dongeng adalah ....",
-        options: [
-          "tokoh yang muncul sebentar",
-          "tokoh yang muncul dari awal sampai akhir cerita",
-          "nama pengarang"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tokoh utama biasanya muncul dari awal sampai akhir cerita."
-      },
-      {
-        text: "28. Penokohan adalah ....",
-        options: [
-          "judul buku",
-          "watak atau karakter tokoh",
-          "banyaknya bab"
-        ],
-        correctIndex: 1,
-        explanation: "Penokohan menjelaskan watak atau karakter tokoh dalam cerita."
-      },
-      {
-        text: "29. Latar tempat menjelaskan ....",
-        options: [
-          "kapan cerita terjadi",
-          "di mana peristiwa terjadi",
-          "siapa tokoh utama"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Latar tempat menggambarkan letak kejadian atau peristiwa yang terjadi."
-      },
-      {
-        text: "30. Latar suasana menggambarkan ....",
-        options: [
-          "jumlah tokoh",
-          "perasaan dan keadaan dalam cerita",
-          "judul cerita"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Latar suasana menjelaskan suasana sedih, senang, tegang, dan sebagainya."
-      },
-      {
-        text: "31. Alur adalah ....",
-        options: [
-          "urutan peristiwa dalam cerita",
-          "jumlah halaman buku",
-          "nama pengarang"
+          "Menjaga kebersihan rumah",
+          "Berteriak sekeras-kerasnya",
+          "Tidur sepanjang hari",
+          "Membuang sampah di lantai"
         ],
         correctIndex: 0,
-        explanation:
-          "Alur merupakan urutan peristiwa-peristiwa yang diceritakan."
+        explanation: "Menjaga kebersihan rumah termasuk contoh aturan yang biasa ditetapkan di rumah."
       },
+      // 8
       {
-        text: "32. Tahap awal alur berisi ....",
+        topic: "Aturan di Rumah",
+        question: "Manakah yang termasuk aturan menjaga kebersihan diri?",
         options: [
-          "penyelesaian masalah",
-          "pengenalan tokoh dan peristiwa",
-          "puncak masalah"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tahap awal berisi pengenalan tokoh dan peristiwa yang terjadi."
-      },
-      {
-        text: "33. Tahap tengah alur berisi ....",
-        options: [
-          "judul dan pengarang",
-          "penjelasan masalah yang dialami tokoh",
-          "amanat cerita"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tahap tengah berisi permasalahan yang dialami tokoh cerita."
-      },
-      {
-        text: "34. Alur maju disajikan ....",
-        options: [
-          "dari akhir ke awal",
-          "melompat-lompat saja",
-          "sesuai urutan waktu dari awal ke akhir"
+          "Tidak mau mandi",
+          "Jarang menyikat gigi",
+          "Menjaga kebersihan diri",
+          "Tidak mau keramas"
         ],
         correctIndex: 2,
-        explanation:
-          "Alur maju menceritakan peristiwa sesuai urutan waktu dari awal hingga akhir."
+        explanation: "Menjaga kebersihan diri adalah salah satu aturan penting di rumah."
       },
+      // 9
       {
-        text: "35. Amanat dalam dongeng adalah ....",
+        topic: "Aturan di Rumah",
+        question: "Contoh aturan di rumah yang berkaitan dengan kerapian adalah...",
         options: [
-          "nama penulis",
-          "jumlah paragraf",
-          "pesan moral yang ingin disampaikan penulis"
+          "Merapikan tempat tidur",
+          "Melempar bantal ke lantai",
+          "Membiarkan kamar berantakan",
+          "Menginjak-injak selimut"
+        ],
+        correctIndex: 0,
+        explanation: "Merapikan tempat tidur adalah contoh aturan di rumah yang berkaitan dengan kerapian."
+      },
+      // 10
+      {
+        topic: "Aturan di Rumah",
+        question: "Setelah selesai bermain, kita harus...",
+        options: [
+          "Meninggalkan mainan berserakan",
+          "Merapikan mainan",
+          "Melempar mainan ke luar rumah",
+          "Memberikan mainan pada orang asing"
+        ],
+        correctIndex: 1,
+        explanation: "Merapikan mainan setelah digunakan membuat mainan rapi dan tidak cepat rusak."
+      },
+      // 11
+      {
+        topic: "Aturan di Rumah",
+        question: "Mengapa kita perlu berpamitan jika ingin keluar rumah?",
+        options: [
+          "Supaya teman bangga",
+          "Supaya orang tua tidak khawatir",
+          "Supaya bisa pulang larut malam",
+          "Supaya tidak perlu kembali lagi"
+        ],
+        correctIndex: 1,
+        explanation: "Meminta izin sebelum keluar rumah membuat orang tua tidak khawatir dengan keadaan kita."
+      },
+      // 12
+      {
+        topic: "Aturan di Rumah",
+        question: "Contoh aturan di rumah yang berkaitan dengan barang pribadi adalah...",
+        options: [
+          "Meninggalkan sepatu di mana saja",
+          "Menyimpan sepatu di rak sepatu",
+          "Meminjam sepatu teman tanpa izin",
+          "Melempar sepatu ke taman"
+        ],
+        correctIndex: 1,
+        explanation: "Menyimpan sepatu di rak sepatu membuat rumah lebih rapi dan bersih."
+      },
+      // 13
+      {
+        topic: "Aturan di Rumah",
+        question: "Belajar dengan rajin termasuk...",
+        options: [
+          "Hak orang tua",
+          "Kewajiban anak di rumah",
+          "Permainan baru",
+          "Aturan di jalan raya"
+        ],
+        correctIndex: 1,
+        explanation: "Belajar dengan rajin adalah salah satu kewajiban dan aturan bagi anak di rumah."
+      },
+      // 14
+      {
+        topic: "Aturan di Rumah",
+        question: "Sarapan sebelum berangkat sekolah adalah...",
+        options: [
+          "Aturan yang tidak penting",
+          "Contoh aturan di rumah",
+          "Hal yang harus dihindari",
+          "Tidak ada hubungannya dengan kesehatan"
+        ],
+        correctIndex: 1,
+        explanation: "Sarapan termasuk aturan di rumah yang baik untuk menjaga kesehatan anak."
+      },
+      // 15
+      {
+        topic: "Aturan di Rumah",
+        question: "Contoh aturan di rumah yang membantu orang tua adalah...",
+        options: [
+          "Membiarkan orang tua bekerja sendiri",
+          "Membantu pekerjaan rumah",
+          "Meninggalkan piring kotor",
+          "Mengacaukan dapur"
+        ],
+        correctIndex: 1,
+        explanation: "Membantu pekerjaan rumah membuat pekerjaan orang tua lebih ringan dan cepat selesai."
+      },
+      // 16
+      {
+        topic: "Aturan di Rumah",
+        question: "Menghormati orang tua merupakan...",
+        options: [
+          "Aturan yang boleh dilanggar",
+          "Sikap terpuji dan aturan di rumah",
+          "Permainan",
+          "Hak anak"
+        ],
+        correctIndex: 1,
+        explanation: "Menghormati dan mematuhi nasihat orang tua adalah sikap terpuji dan menjadi aturan di rumah."
+      },
+      // 17
+      {
+        topic: "Manfaat Kebersihan Rumah",
+        question: "Manfaat menjaga kebersihan rumah adalah...",
+        options: [
+          "Rumah menjadi kotor dan bau",
+          "Rumah menjadi bersih, nyaman, dan sehat",
+          "Rumah penuh sampah",
+          "Rumah dipenuhi serangga"
+        ],
+        correctIndex: 1,
+        explanation: "Menjaga kebersihan rumah membuat rumah menjadi bersih, nyaman, dan sehat."
+      },
+      // 18
+      {
+        topic: "Manfaat Kebersihan Rumah",
+        question: "Merapikan mainan setelah digunakan akan membuat...",
+        options: [
+          "Mainan sulit ditemukan",
+          "Mainan cepat rusak",
+          "Mainan jadi rapi dan tidak mudah rusak",
+          "Orang tua marah"
         ],
         correctIndex: 2,
-        explanation:
-          "Amanat adalah pesan moral yang ingin disampaikan penulis melalui cerita."
+        explanation: "Merapikan mainan menjadikannya rapi dan membantu agar tidak cepat rusak atau hilang."
       },
-
-      // UNGKAPAN
+      // 19
       {
-        text: "36. Ungkapan adalah ....",
+        topic: "Manfaat Membantu di Rumah",
+        question: "Membantu pekerjaan rumah bermanfaat untuk...",
         options: [
-          "kelompok kata dengan arti sama persis",
-          "gabungan kata yang artinya berbeda dari arti kata asal",
-          "kalimat tanya saja"
+          "Membuat pekerjaan semakin berat",
+          "Membuat pekerjaan cepat selesai dan menjadi ringan",
+          "Membuat rumah makin kotor",
+          "Mengganggu orang tua"
         ],
         correctIndex: 1,
-        explanation:
-          "Ungkapan (idiom) artinya berbeda dengan arti kata pembentuknya."
+        explanation: "Membantu pekerjaan rumah membuat pekerjaan menjadi lebih ringan dan cepat selesai."
       },
+      // 20
       {
-        text: "37. Ungkapan 'bintang kelas' berarti ....",
+        topic: "Meminta Izin",
+        question: "Meminta izin sebelum keluar rumah membuat orang tua...",
         options: [
-          "siswa yang suka melihat bintang",
-          "siswa yang sering melamun",
-          "siswa yang berprestasi"
+          "Tidak peduli",
+          "Semakin marah",
+          "Tidak khawatir",
+          "Tidak mau menasihati"
         ],
         correctIndex: 2,
-        explanation: "Bintang kelas berarti siswa yang berprestasi."
+        explanation: "Dengan meminta izin, orang tua mengetahui ke mana kita pergi sehingga tidak khawatir."
       },
+      // 21
       {
-        text: "38. Ungkapan 'demam panggung' berarti ....",
+        topic: "Aturan di Sekolah",
+        question: "Aturan di sekolah dibuat oleh...",
         options: [
-          "sakit karena pilek",
-          "gugup saat tampil di depan umum",
-          "suka menari di panggung"
+          "Teman sebaya",
+          "Sekolah",
+          "Orang di luar sekolah",
+          "Tetangga"
         ],
         correctIndex: 1,
-        explanation: "Demam panggung berarti gugup ketika akan tampil di panggung."
+        explanation: "Aturan di sekolah dibuat oleh pihak sekolah untuk kebaikan seluruh warga sekolah."
       },
+      // 22
       {
-        text: "39. Ungkapan 'gulung tikar' berarti ....",
-        options: ["bangkrut", "membeli karpet", "menggulung kertas"],
-        correctIndex: 0,
-        explanation: "Gulung tikar berarti bangkrut atau usahanya tutup."
-      },
-      {
-        text: "40. Ungkapan 'rendah hati' berarti ....",
+        topic: "Aturan di Sekolah",
+        question: "Aturan di sekolah harus ditaati oleh...",
         options: [
-          "selalu menunduk",
-          "tidak sombong",
-          "berjalan pelan-pelan"
+          "Hanya siswa baru",
+          "Hanya guru",
+          "Semua warga sekolah",
+          "Hanya kepala sekolah"
         ],
-        correctIndex: 1,
-        explanation: "Rendah hati berarti tidak sombong."
-      },
-
-      // TANGGAPAN & SARAN
-      {
-        text: "41. Tanggapan adalah ....",
-        options: [
-          "judul cerita",
-          "gagasan atau pendapat terhadap suatu hal",
-          "nama tokoh"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Tanggapan adalah gagasan atau ide yang disampaikan terhadap bacaan atau peristiwa."
-      },
-      {
-        text: "42. Kata yang sering digunakan dalam kalimat tanggapan adalah ....",
-        options: ["menurut saya", "sebaiknya", "besok pagi"],
-        correctIndex: 0,
-        explanation:
-          "Kalimat tanggapan biasanya memuat kata 'menurut saya'."
-      },
-      {
-        text: "43. Saran adalah ....",
-        options: [
-          "hukuman untuk teman",
-          "pendapat untuk dipertimbangkan",
-          "cerita lucu"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Saran adalah pendapat yang disampaikan untuk dipertimbangkan."
-      },
-      {
-        text: "44. Kata yang sering digunakan dalam kalimat saran adalah ....",
-        options: ["sebaiknya atau seharusnya", "kemarin sore", "mengetahui"],
-        correctIndex: 0,
-        explanation:
-          "Kalimat saran biasanya menggunakan kata 'sebaiknya' atau 'seharusnya'."
-      },
-      {
-        text: "45. Saat memberi tanggapan dan saran, bahasa yang digunakan harus ....",
-        options: ["kasar", "santai tapi tidak sopan", "santun dan sopan"],
         correctIndex: 2,
-        explanation:
-          "Tanggapan dan saran harus disampaikan dengan bahasa yang santun."
+        explanation: "Aturan di sekolah ditaati oleh semua warga sekolah, termasuk siswa, guru, dan petugas lainnya."
       },
-
-      // HURUF TEGAK BERSAMBUNG
+      // 23
       {
-        text: "46. Huruf tegak bersambung adalah cara menulis huruf ....",
+        topic: "Warga Sekolah",
+        question: "Yang termasuk warga sekolah adalah...",
         options: [
-          "dipisah semua",
-          "secara bersambung tanpa terputus",
-          "hanya dengan huruf besar"
-        ],
-        correctIndex: 1,
-        explanation:
-          "Huruf tegak bersambung ditulis saling terhubung antara huruf yang satu dan lainnya."
-      },
-      {
-        text: "47. Manfaat belajar huruf tegak bersambung adalah ....",
-        options: [
-          "tulisan menjadi lebih cepat dan rapi",
-          "kertas cepat habis",
-          "pensil cepat pendek"
+          "Siswa, guru, kepala sekolah, karyawan, satpam",
+          "Hanya siswa",
+          "Hanya guru",
+          "Hanya satpam dan karyawan"
         ],
         correctIndex: 0,
-        explanation:
-          "Menulis tegak bersambung membuat tulisan lebih cepat dan dapat dilatih menjadi rapi."
+        explanation: "Warga sekolah terdiri dari siswa, guru, kepala sekolah, karyawan, dan satpam."
       },
+      // 24
       {
-        text: "48. Saat menulis huruf tegak bersambung, kita harus memperhatikan ....",
+        topic: "Aturan di Sekolah",
+        question: "Contoh aturan di sekolah adalah datang...",
         options: [
-          "posisi badan, cara memegang pensil, dan kemiringan tulisan",
-          "warna baju",
-          "ukuran sepatu"
+          "Terlambat sesuka hati",
+          "Tepat waktu (tidak terlambat)",
+          "Ketika pelajaran selesai",
+          "Hanya saat upacara"
+        ],
+        correctIndex: 1,
+        explanation: "Datang tepat waktu adalah salah satu aturan penting di sekolah."
+      },
+      // 25
+      {
+        topic: "Aturan di Sekolah",
+        question: "Saat guru menjelaskan pelajaran, siswa wajib...",
+        options: [
+          "Mengobrol dengan teman",
+          "Bermain sendiri",
+          "Mendengarkan penjelasan guru",
+          "Keluar kelas tanpa izin"
+        ],
+        correctIndex: 2,
+        explanation: "Mendengarkan penjelasan guru adalah bagian dari mematuhi aturan di sekolah."
+      },
+      // 26
+      {
+        topic: "Aturan di Sekolah",
+        question: "Menjaga kebersihan lingkungan sekolah termasuk...",
+        options: [
+          "Aturan di rumah",
+          "Aturan di sekolah",
+          "Aturan di jalan",
+          "Aturan di kantin saja"
+        ],
+        correctIndex: 1,
+        explanation: "Menjaga kebersihan lingkungan sekolah adalah salah satu contoh aturan di sekolah."
+      },
+      // 27
+      {
+        topic: "Aturan di Sekolah",
+        question: "Bermain dengan rukun di sekolah berarti...",
+        options: [
+          "Suka bertengkar",
+          "Saling mengejek",
+          "Bermain tanpa menghina dan menyakiti teman",
+          "Tidak mau berteman"
+        ],
+        correctIndex: 2,
+        explanation: "Bermain dengan rukun berarti saling menghargai dan tidak menyakiti teman."
+      },
+      // 28
+      {
+        topic: "Aturan di Sekolah",
+        question: "Mengapa kita harus memakai seragam sesuai hari yang ditentukan?",
+        options: [
+          "Supaya bisa pamer baju mahal",
+          "Supaya terlihat berbeda sendiri",
+          "Karena itu aturan sekolah yang harus ditaati",
+          "Supaya tidak dikenal guru"
+        ],
+        correctIndex: 2,
+        explanation: "Memakai seragam sesuai hari adalah bagian dari tata tertib yang harus ditaati siswa."
+      },
+      // 29
+      {
+        topic: "Akibat Melanggar Aturan Sekolah",
+        question: "Jika tidak menaati aturan di sekolah, maka...",
+        options: [
+          "Suasana menjadi kacau dan tidak tertib",
+          "Semua orang senang",
+          "Sekolah semakin bersih",
+          "Pelajaran semakin mudah"
         ],
         correctIndex: 0,
-        explanation:
-          "Menulis tegak bersambung juga memerlukan posisi badan yang baik dan cara memegang pensil yang benar."
+        explanation: "Melanggar aturan membuat suasana sekolah menjadi kacau dan tidak tertib."
       },
-      // RINGKASAN PERILAKU DARI PERMASALAHAN HANI
+      // 30
       {
-        text: "49. Hani lupa membawa alat tulis ke sekolah. Tanggapan yang tepat adalah ....",
+        topic: "Antre di Sekolah",
+        question: "Saat akan menggunakan kamar mandi atau membeli makanan di kantin, kita harus...",
         options: [
-          "Hani memang malas ke sekolah",
-          "Hani kurang teliti menyiapkan alat tulis",
-          "Hani tidak perlu belajar"
+          "Menyelak barisan",
+          "Mengantre dengan tertib",
+          "Berdesak-desakan di depan",
+          "Menyuruh teman mengalah"
         ],
         correctIndex: 1,
-        explanation:
-          "Contoh tanggapan: Hani kurang teliti sehingga lupa membawa alat tulis ke sekolah."
+        explanation: "Mengantre dengan tertib adalah aturan yang harus ditaati agar semua mendapat giliran dengan adil."
       },
+      // 31
       {
-        text: "50. Saran yang tepat untuk Hani agar tidak lupa alat tulis adalah ....",
+        topic: "Aturan di Lingkungan Sekitar",
+        question: "Contoh aturan di lingkungan sekitar rumah adalah...",
         options: [
-          "sebaiknya Hani tidak usah membawa tas",
-          "sebaiknya Hani menyimpan alat tulis di tas sejak malam",
-          "sebaiknya Hani bangun siang"
+          "Membuang sampah ke selokan",
+          "Menjaga kebersihan selokan dan lingkungan bersama-sama",
+          "Membakar sampah di jalan",
+          "Melempar sampah ke rumah tetangga"
         ],
         correctIndex: 1,
-        explanation:
-          "Sebaiknya Hani langsung menyimpan alat tulis di tas sekolah sejak malam."
+        explanation: "Menjaga kebersihan selokan dan lingkungan bersama-sama adalah aturan penting di lingkungan sekitar."
+      },
+      // 32
+      {
+        topic: "Aturan di Lingkungan Sekitar",
+        question: "Anak-anak dilarang bermain di jalan raya yang ramai karena...",
+        options: [
+          "Tidak seru",
+          "Bisa mengganggu lalu lintas dan membahayakan keselamatan",
+          "Tidak boleh bertemu teman",
+          "Akan cepat bosan"
+        ],
+        correctIndex: 1,
+        explanation: "Bermain di jalan raya yang ramai sangat berbahaya dan bisa mengganggu kelancaran lalu lintas."
+      },
+      // 33
+      {
+        topic: "Aturan Lalu Lintas",
+        question: "Contoh sikap taat aturan lalu lintas bagi pejalan kaki adalah...",
+        options: [
+          "Menyeberang sembarangan di tikungan",
+          "Berjalan di tengah jalan raya",
+          "Menyeberang di zebra cross dan melihat kiri-kanan",
+          "Mengejar kendaraan di jalan"
+        ],
+        correctIndex: 2,
+        explanation: "Menyeberang di zebra cross dan melihat kiri-kanan adalah bentuk ketaatan pada aturan lalu lintas."
+      },
+      // 34
+      {
+        topic: "Disiplin",
+        question: "Disiplin berarti...",
+        options: [
+          "Suka melanggar aturan",
+          "Kesediaan menaati aturan dengan sadar",
+          "Takut pada guru",
+          "Hanya patuh bila diawasi"
+        ],
+        correctIndex: 1,
+        explanation: "Disiplin adalah kesediaan menaati aturan dengan sadar, bukan karena takut diawasi."
+      },
+      // 35
+      {
+        topic: "Disiplin di Rumah",
+        question: "Contoh sikap disiplin di rumah adalah...",
+        options: [
+          "Bangun pagi tepat waktu dan merapikan tempat tidur",
+          "Bangun siang dan langsung bermain",
+          "Marah ketika diminta membantu",
+          "Tidak mau mandi"
+        ],
+        correctIndex: 0,
+        explanation: "Bangun pagi tepat waktu dan merapikan tempat tidur menunjukkan sikap disiplin di rumah."
+      },
+      // 36
+      {
+        topic: "Manfaat Disiplin",
+        question: "Salah satu manfaat bersikap disiplin adalah...",
+        options: [
+          "Sulit dipercaya orang lain",
+          "Tidak disukai teman",
+          "Lebih mudah dipercaya dan dihargai",
+          "Tidak perlu belajar"
+        ],
+        correctIndex: 2,
+        explanation: "Orang yang disiplin biasanya lebih mudah dipercaya dan dihargai oleh orang lain."
+      },
+      // 37
+      {
+        topic: "Akibat Melanggar Aturan Lingkungan",
+        question: "Membuang sampah sembarangan di sungai dapat menyebabkan...",
+        options: [
+          "Air menjadi jernih",
+          "Lingkungan makin bersih",
+          "Banjir dan lingkungan kotor",
+          "Semua orang senang"
+        ],
+        correctIndex: 2,
+        explanation: "Membuang sampah sembarangan di sungai dapat menyebabkan banjir dan lingkungan menjadi kotor."
+      },
+      // 38
+      {
+        topic: "Hak dan Aturan",
+        question: "Dengan tertib membuang sampah pada tempatnya, kita menghormati hak orang lain untuk...",
+        options: [
+          "Mendapat lingkungan yang bersih dan sehat",
+          "Tidak peduli terhadap lingkungan",
+          "Mendapat tempat bermain yang kotor",
+          "Boleh membuang sampah sembarangan"
+        ],
+        correctIndex: 0,
+        explanation: "Lingkungan bersih adalah hak semua orang. Menjaga kebersihan berarti menghormati hak orang lain."
+      },
+      // 39
+      {
+        topic: "Peran Anak",
+        question: "Jika ada teman yang melanggar aturan, sikap yang baik adalah...",
+        options: [
+          "Ikut-ikutan melanggar",
+          "Membiarkan saja",
+          "Mengingatkan dengan sopan dan baik",
+          "Mengejeknya di depan teman"
+        ],
+        correctIndex: 2,
+        explanation: "Mengingatkan teman dengan sopan menunjukkan bahwa kita peduli dan menghargai aturan."
+      },
+      // 40
+      {
+        topic: "Sikap Terhadap Aturan",
+        question: "Jika ada aturan yang belum kita mengerti, sebaiknya kita...",
+        options: [
+          "Langsung melanggar saja",
+          "Mengabaikannya",
+          "Bertanya dengan sopan kepada orang tua atau guru",
+          "Mengajak teman untuk melawan"
+        ],
+        correctIndex: 2,
+        explanation: "Bertanya dengan sopan kepada orang tua atau guru akan membantu kita memahami aturan dengan benar."
       }
     ];
 
-    // ========= DATA SOAL ISIAN SINGKAT (20) =========
-    const shortQuestions = [
-      {
-        text: "1. Istilah untuk inti atau gagasan utama paragraf adalah ....",
-        answers: ["ide pokok"],
-        explanation: "Inti paragraf disebut ide pokok."
-      },
-      {
-        text: "2. Informasi tambahan yang menjelaskan ide pokok disebut ide ....",
-        answers: ["pendukung"],
-        explanation: "Informasi tambahan disebut ide pendukung."
-      },
-      {
-        text: "3. Perubahan wujud padat menjadi cair karena panas disebut ....",
-        answers: ["mencair"],
-        explanation: "Perubahan padat menjadi cair disebut mencair."
-      },
-      {
-        text: "4. Wujud benda meliputi padat, cair, dan ....",
-        answers: ["gas"],
-        explanation: "Tiga wujud benda utama adalah padat, cair, dan gas."
-      },
-      {
-        text: "5. Kata 'gerobak' termasuk kata .... (serapan/kiasan)",
-        answers: ["serapan", "kata serapan"],
-        explanation: "Gerobak adalah contoh kata serapan dari bahasa daerah."
-      },
-      {
-        text: "6. Penyajian teks dalam bentuk yang lebih singkat dan padat disebut ....",
-        answers: ["ringkasan"],
-        explanation: "Ringkasan adalah bentuk singkat dari teks yang panjang."
-      },
-      {
-        text: "7. Teks yang menjelaskan proses peristiwa alam atau ilmu pengetahuan disebut teks ....",
-        answers: ["eksplanasi", "teks eksplanasi"],
-        explanation: "Teks eksplanasi menjelaskan proses atau peristiwa."
-      },
-      {
-        text: "8. Kalimat yang memiliki subjek dan predikat dengan jelas disebut kalimat ....",
-        answers: ["efektif", "kalimat efektif"],
-        explanation: "Kalimat efektif memiliki unsur S dan P dengan jelas."
-      },
-      {
-        text: "9. Kelompok kata yang artinya berbeda dari arti kata asal disebut ....",
-        answers: ["ungkapan", "idiom"],
-        explanation: "Ungkapan atau idiom mempunyai makna kias."
-      },
-      {
-        text: "10. Ungkapan untuk siswa berprestasi di kelas adalah ....",
-        answers: ["bintang kelas"],
-        explanation: "Siswa berprestasi sering disebut bintang kelas."
-      },
-      {
-        text: "11. Cerita yang tokoh utamanya hewan dan mengandung pesan moral disebut ....",
-        answers: ["fabel"],
-        explanation: "Fabel adalah dongeng yang tokohnya hewan."
-      },
-      {
-        text: "12. Cerita tentang asal-usul suatu tempat disebut ....",
-        answers: ["legenda"],
-        explanation: "Legenda adalah cerita asal-usul tempat atau peristiwa."
-      },
-      {
-        text: "13. Pesan moral yang ingin disampaikan penulis melalui dongeng disebut ....",
-        answers: ["amanat"],
-        explanation: "Amanat adalah pesan yang ingin disampaikan penulis."
-      },
-      {
-        text: "14. Gagasan utama dalam dongeng yang menjadi dasar cerita disebut ....",
-        answers: ["tema"],
-        explanation: "Tema adalah gagasan utama cerita."
-      },
-      {
-        text: "15. Tokoh dalam cerita yang muncul dari awal sampai akhir disebut tokoh ....",
-        answers: ["utama", "tokoh utama"],
-        explanation: "Tokoh utama muncul sepanjang cerita."
-      },
-      {
-        text: "16. Kata yang biasa digunakan dalam kalimat tanggapan adalah .... (dua kata)",
-        answers: ["menurut saya"],
-        explanation: "Kalimat tanggapan biasanya memuat kata 'menurut saya'."
-      },
-      {
-        text: "17. Kata yang biasa digunakan dalam kalimat saran adalah .... (misalnya satu kata)",
-        answers: ["sebaiknya", "seharusnya"],
-        explanation: "Kalimat saran memakai kata sebaiknya atau seharusnya."
-      },
-      {
-        text: "18. Suasana sedih, senang, atau tegang dalam cerita termasuk latar ....",
-        answers: ["suasana", "latar suasana"],
-        explanation: "Latar suasana menunjukkan rasa dan keadaan dalam cerita."
-      },
-      {
-        text: "19. Urutan peristiwa dalam cerita disebut ....",
-        answers: ["alur"],
-        explanation: "Alur adalah urutan peristiwa yang diceritakan."
-      },
-      {
-        text: "20. Cara menulis huruf secara bersambung tanpa terputus disebut huruf ....",
-        answers: ["tegak bersambung", "huruf tegak bersambung"],
-        explanation: "Huruf tegak bersambung ditulis saling terhubung."
-      }
+    // ==============================
+    // PESAN PENYEMANGAT
+    // ==============================
+    const correctMessages = [
+      "Hebat! Jawabanmu tepat sekali! 🌟",
+      "Keren! Kamu paham tentang aturan! 💪",
+      "Luar biasa! Teruskan semangat belajarmu! 😍",
+      "Mantap! Sikap tertibmu pasti membawa kebaikan! 🙌",
+      "Bagus sekali! Kamu calon warga negara yang baik! 🇮🇩",
+      "Super! Jawabanmu menunjukkan kamu menghargai aturan! 🎉"
     ];
 
-    // ========= DATA SOAL ESAI (10) =========
-    const essayQuestions = [
-      {
-        text:
-          "1. Tuliskan satu paragraf pendek (3–4 kalimat) yang menjelaskan apa itu ide pokok dan ide pendukung serta contohnya!",
-        sample:
-          "Ide pokok adalah gagasan utama dalam paragraf. Ide pendukung adalah kalimat yang menjelaskan ide pokok. Contohnya, ide pokoknya tentang menjaga kebersihan lingkungan, sedangkan ide pendukung menjelaskan cara membuang sampah pada tempatnya, membersihkan selokan, dan menanam pohon."
-      },
-      {
-        text:
-          "2. Buatlah satu contoh ringkasan dari kegiatan favoritmu di sekolah dalam 3–4 kalimat!",
-        sample:
-          "Kegiatan favorit saya di sekolah adalah membaca di perpustakaan. Setiap hari Rabu, saya dan teman-teman pergi ke perpustakaan untuk memilih buku. Kami membaca dengan tenang lalu menceritakan isi buku secara singkat. Dari kegiatan itu, saya menjadi suka membaca."
-      },
-      {
-        text:
-          "3. Tuliskan satu contoh teks eksplanasi singkat (3–4 kalimat) tentang proses mencairnya es batu!",
-        sample:
-          "Es batu dapat berubah menjadi air ketika diletakkan di tempat yang hangat. Suhu yang tinggi membuat es batu mencair. Es yang semula padat perlahan-lahan menjadi cairan bening. Proses perubahan dari padat menjadi cair ini disebut mencair."
-      },
-      {
-        text:
-          "4. Buatlah satu paragraf yang berisi tanggapan dan saran terhadap teman yang sering datang terlambat ke sekolah!",
-        sample:
-          \"Menurut saya, teman yang sering datang terlambat ke sekolah kurang disiplin waktu. Sebaiknya ia tidur lebih awal dan menyiapkan perlengkapan sekolah pada malam hari. Ia juga perlu berangkat lebih cepat agar tidak terkena macet. Dengan begitu ia bisa datang tepat waktu dan mengikuti pelajaran sejak awal.\"
-      },
-      {
-        text:
-          "5. Tuliskan contoh dongeng singkat (3–5 kalimat) dengan tokoh hewan yang mengandung amanat jangan sombong!",
-        sample:
-          "Suatu hari, seekor kelinci sombong menantang kura-kura untuk lomba lari. Kelinci merasa pasti menang sehingga ia berhenti dan tertidur di pinggir jalan. Sementara itu, kura-kura berjalan pelan tetapi tidak pernah berhenti. Akhirnya kura-kura sampai di garis akhir lebih dulu. Amanatnya, kita tidak boleh sombong dan meremehkan orang lain."
-      },
-      {
-        text:
-          "6. Jelaskan dengan kalimatmu sendiri apa yang dimaksud dengan ungkapan dan berikan 2 contoh ungkapan beserta artinya!",
-        sample:
-          "Ungkapan adalah gabungan kata yang maknanya tidak sama dengan arti kata-kata pembentuknya. Contohnya, 'bintang kelas' artinya siswa berprestasi. Contoh lain, 'buah bibir' artinya menjadi bahan pembicaraan banyak orang."
-      },
-      {
-        text:
-          "7. Tuliskan satu paragraf tentang pentingnya menggunakan bahasa yang santun ketika memberi tanggapan di kelas!",
-        sample:
-          "Bahasa yang santun sangat penting ketika memberi tanggapan di kelas. Dengan bahasa yang sopan, teman tidak akan merasa disalahkan atau diremehkan. Guru juga akan merasa senang karena suasana kelas tetap tertib dan nyaman. Selain itu, kita belajar menghargai pendapat orang lain."
-      },
-      {
-        text:
-          "8. Buatlah satu paragraf yang menjelaskan perbedaan fabel dan legenda serta masing-masing satu contohnya!",
-        sample:
-          "Fabel adalah dongeng yang tokohnya hewan, misalnya cerita 'Si Kancil'. Legenda adalah cerita tentang asal-usul suatu tempat, misalnya 'Malin Kundang'. Fabel lebih menonjolkan perilaku hewan yang seperti manusia, sedangkan legenda menjelaskan bagaimana suatu tempat terbentuk. Keduanya sama-sama mengandung amanat untuk pembaca."
-      },
-      {
-        text:
-          "9. Tuliskan contoh kalimat efektif yang memiliki unsur S, P, O, dan K tentang kegiatan di rumahmu!",
-        sample:
-          "Contoh kalimat efektif: 'Adi (S) menyapu (P) halaman rumah (O) setiap pagi (K)'. Kalimat itu memiliki subjek, predikat, objek, dan keterangan yang jelas."
-      },
-      {
-        text:
-          "10. Buatlah sebuah paragraf (3–4 kalimat) berdasarkan gambar imajinasimu ketika Cici menyimpan minuman di kulkas lalu minuman itu membeku!",
-        sample:
-          "Cici menyimpan minuman cokelat di dalam kulkas pada malam hari. Keesokan paginya, minuman itu berubah menjadi es yang keras. Cici merasa senang karena minuman dingin itu sangat segar. Peristiwa itu terjadi karena minuman yang semula cair mengalami perubahan wujud menjadi padat."
-      }
+    const incorrectMessages = [
+      "Belum tepat, tapi jangan menyerah. Baca lagi pembahasannya ya! 🌈",
+      "Tidak apa-apa salah, namanya juga belajar. Ayo coba pahami lagi! 💡",
+      "Masih kurang tepat, tapi semangatmu belajar jauh lebih penting! 💖",
+      "Ups, belum benar. Yuk belajar dari penjelasannya supaya makin paham! 📘",
+      "Tenang, salah itu wajar. Yang penting mau belajar lagi! 🙏",
+      "Belum pas, tapi kamu sudah berani mencoba. Itu luar biasa! 💪"
     ];
 
-    // ========= STATE =========
-    let currentMode = null; // 'mc', 'short', atau 'essay'
+    // ==============================
+    // LOGIKA KUIS
+    // ==============================
+    const totalQuestions = questions.length;
     let currentIndex = 0;
-    let scoreMc = 0;
-    let scoreShort = 0;
+    let score = 0;
+    let questionLocked = false;
 
-    const positiveMessages = [
-      "Keren! Teruskan semangatmu! 💪",
-      "Hebat! Kamu sangat teliti! 🌟",
-      "Jawabanmu tepat, luar biasa! 🎉",
-      "Mantap! Kamu sudah mengerti materinya! ✅",
-      "Super! Tetap fokus seperti ini ya! ✨"
-    ];
+    const currentNumberEl = document.getElementById("currentNumber");
+    const totalNumberEl = document.getElementById("totalNumber");
+    const miniCounterEl = document.getElementById("miniCounter");
+    const progressFillEl = document.getElementById("progressFill");
+    const topicTextEl = document.getElementById("topicText");
+    const questionTextEl = document.getElementById("questionText");
+    const optionsListEl = document.getElementById("optionsList");
+    const feedbackAreaEl = document.getElementById("feedbackArea");
+    const currentScoreEl = document.getElementById("currentScore");
+    const quizContentEl = document.getElementById("quizContent");
+    const resultViewEl = document.getElementById("resultView");
+    const resultIconEl = document.getElementById("resultIcon");
+    const resultTitleEl = document.getElementById("resultTitle");
+    const resultCorrectEl = document.getElementById("resultCorrect");
+    const resultTotalEl = document.getElementById("resultTotal");
+    const resultNoteEl = document.getElementById("resultNote");
+    const restartBtn = document.getElementById("restartBtn");
 
-    const negativeMessages = [
-      "Belum tepat, tapi jangan menyerah ya! 💜",
-      "Tidak apa-apa, dari salah kita belajar! 🌱",
-      "Masih salah, coba perhatikan lagi penjelasannya ya. 📖",
-      "Belajar itu proses, kamu pasti bisa! 💪",
-      "Ayo semangat! Baca pembahasan, lalu lanjut lagi. 🔍"
-    ];
+    totalNumberEl.textContent = totalQuestions;
+    resultTotalEl.textContent = totalQuestions;
 
-    function getRandomMessage(isCorrect) {
-      const arr = isCorrect ? positiveMessages : negativeMessages;
-      const idx = Math.floor(Math.random() * arr.length);
-      return arr[idx];
-    }
+    function showQuestion() {
+      questionLocked = false;
+      feedbackAreaEl.innerHTML = "";
 
-    // ========= UI HELPERS =========
-    function $(id) {
-      return document.getElementById(id);
-    }
+      const q = questions[currentIndex];
 
-    function showElement(id) {
-      $(id).style.display = "block";
-    }
+      currentNumberEl.textContent = currentIndex + 1;
+      miniCounterEl.textContent = (currentIndex + 1) + " / " + totalQuestions;
+      topicTextEl.textContent = q.topic;
+      questionTextEl.textContent = q.question;
+      currentScoreEl.textContent = score;
 
-    function hideElement(id) {
-      $(id).style.display = "none";
-    }
+      const progressPercent = (currentIndex / totalQuestions) * 100;
+      progressFillEl.style.width = progressPercent + "%";
 
-    function updateProgress() {
-      let total;
-      if (currentMode === "mc") {
-        total = mcQuestions.length;
-      } else if (currentMode === "short") {
-        total = shortQuestions.length;
-      } else {
-        total = essayQuestions.length;
-      }
+      optionsListEl.innerHTML = "";
+      const optionLabels = ["A", "B", "C", "D"];
 
-      const currentNo = currentIndex + 1;
-      const percent = (currentNo / total) * 100;
-      $("progress-fill").style.width = percent + "%";
-      $("badge-progress").textContent = `Soal ${currentNo} / ${total}`;
-      $("question-counter-label").textContent = `Soal ${currentNo} dari ${total}`;
-
-      if (currentMode === "mc") {
-        $("badge-score").textContent = `Skor: ${scoreMc}`;
-      } else if (currentMode === "short") {
-        $("badge-score").textContent = `Skor: ${scoreShort}`;
-      } else {
-        $("badge-score").textContent = "Skor: - (esai)";
-      }
-    }
-
-    function resetFeedback() {
-      $("feedback").innerHTML = "";
-    }
-
-    // ========= START & NAVIGATION =========
-    function startQuiz(mode) {
-      currentMode = mode;
-      currentIndex = 0;
-      resetFeedback();
-      if ($("short-input")) $("short-input").value = "";
-      if ($("essay-input")) $("essay-input").value = "";
-
-      if (mode === "mc") {
-        $("mode-badge").textContent = "Mode: Pilihan Ganda";
-        $("options-list").style.display = "flex";
-        $("short-answer-area").style.display = "none";
-        $("essay-area").style.display = "none";
-        showMcQuestion();
-      } else if (mode === "short") {
-        $("mode-badge").textContent = "Mode: Isian Singkat";
-        $("options-list").style.display = "none";
-        $("short-answer-area").style.display = "flex";
-        $("essay-area").style.display = "none";
-        showShortQuestion();
-      } else {
-        $("mode-badge").textContent = "Mode: Esai";
-        $("options-list").style.display = "none";
-        $("short-answer-area").style.display = "none";
-        $("essay-area").style.display = "flex";
-        showEssayQuestion();
-      }
-
-      hideElement("menu-screen");
-      hideElement("result-screen");
-      showElement("quiz-screen");
-      updateProgress();
-    }
-
-    function backToMenu() {
-      hideElement("quiz-screen");
-      hideElement("result-screen");
-      showElement("menu-screen");
-    }
-
-    function backToMenuFromResult() {
-      hideElement("result-screen");
-      showElement("menu-screen");
-    }
-
-    function restartSameMode() {
-      if (!currentMode) return;
-      if (currentMode === "mc") {
-        scoreMc = 0;
-      } else if (currentMode === "short") {
-        scoreShort = 0;
-      }
-      startQuiz(currentMode);
-    }
-
-    // ========= UTILITY: SHUFFLE ARRAY =========
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    // ========= TAMPILKAN SOAL PILIHAN GANDA =========
-    function showMcQuestion() {
-      const q = mcQuestions[currentIndex];
-      $("question-text").textContent = q.text;
-      const list = $("options-list");
-      list.innerHTML = "";
-      resetFeedback();
-      if ($("short-input")) $("short-input").value = "";
-      if ($("essay-input")) $("essay-input").value = "";
-
-      const storyBox = $("story-box");
-      if (q.story) {
-        storyBox.style.display = "block";
-        storyBox.innerHTML = q.story;
-      } else {
-        storyBox.style.display = "none";
-        storyBox.innerHTML = "";
-      }
-
-      const labels = ["a", "b", "c"];
-      const indices = shuffleArray([0, 1, 2]);
-
-      indices.forEach((optIndex, orderIdx) => {
-        const li = document.createElement("li");
+      q.options.forEach((opt, index) => {
         const btn = document.createElement("button");
         btn.className = "option-btn";
+        btn.dataset.index = index;
 
-        const isCorrect = optIndex === q.correctIndex;
-        btn.onclick = () => selectOption(isCorrect, q.explanation);
+        const labelSpan = document.createElement("div");
+        labelSpan.className = "option-label";
+        labelSpan.textContent = optionLabels[index];
 
-        btn.innerHTML = `<span class="option-label">${labels[orderIdx]}</span><span>${q.options[optIndex]}</span>`;
-        li.appendChild(btn);
-        list.appendChild(li);
+        const textSpan = document.createElement("div");
+        textSpan.className = "option-text";
+        textSpan.textContent = opt;
+
+        btn.appendChild(labelSpan);
+        btn.appendChild(textSpan);
+
+        btn.addEventListener("click", () => handleAnswer(index));
+
+        optionsListEl.appendChild(btn);
       });
-
-      updateProgress();
     }
 
-    function disableOptions() {
-      document.querySelectorAll(".option-btn").forEach((btn) => {
+    function handleAnswer(selectedIndex) {
+      if (questionLocked) return;
+      questionLocked = true;
+
+      const q = questions[currentIndex];
+      const isCorrect = selectedIndex === q.correctIndex;
+
+      const optionButtons = Array.from(document.querySelectorAll(".option-btn"));
+      optionButtons.forEach((btn, idx) => {
         btn.classList.add("disabled");
+        if (idx === q.correctIndex) {
+          btn.classList.add("correct");
+        }
       });
-    }
 
-    function selectOption(isCorrect, explanation) {
-      if (isCorrect) {
-        scoreMc++;
-      }
-
-      disableOptions();
-      showFeedback(isCorrect, explanation);
-
-      const total = mcQuestions.length;
-      setTimeout(() => {
-        currentIndex++;
-        if (currentIndex >= total) {
-          showResult();
-        } else {
-          showMcQuestion();
-        }
-      }, 1900);
-    }
-
-    // ========= TAMPILKAN SOAL ISIAN SINGKAT =========
-    function showShortQuestion() {
-      const q = shortQuestions[currentIndex];
-      $("question-text").textContent = q.text;
-      if ($("short-input")) $("short-input").value = "";
-      if ($("essay-input")) $("essay-input").value = "";
-      resetFeedback();
-
-      const storyBox = $("story-box");
-      storyBox.style.display = "none";
-      storyBox.innerHTML = "";
-
-      updateProgress();
-    }
-
-    function submitShortAnswer() {
-      const q = shortQuestions[currentIndex];
-      const inputEl = $("short-input");
-      if (!inputEl) return;
-      const raw = inputEl.value.trim();
-      if (!raw) {
-        inputEl.focus();
-        return;
-      }
-      const user = raw.toLowerCase();
-
-      let isCorrect = false;
-      for (const ans of q.answers) {
-        const target = ans.toLowerCase();
-        if (user === target) {
-          isCorrect = true;
-          break;
-        }
-        const words = target.split(" ");
-        if (words.every((w) => user.includes(w))) {
-          isCorrect = true;
-          break;
-        }
+      const selectedBtn = optionButtons[selectedIndex];
+      if (!isCorrect) {
+        selectedBtn.classList.add("incorrect");
       }
 
       if (isCorrect) {
-        scoreShort++;
+        score++;
+        currentScoreEl.textContent = score;
       }
 
       showFeedback(isCorrect, q.explanation);
 
-      const total = shortQuestions.length;
       setTimeout(() => {
         currentIndex++;
-        if (currentIndex >= total) {
-          showResult();
+        if (currentIndex < totalQuestions) {
+          showQuestion();
         } else {
-          showShortQuestion();
-        }
-      }, 1900);
-    }
-
-    // ========= TAMPILKAN SOAL ESAI =========
-    function showEssayQuestion() {
-      const q = essayQuestions[currentIndex];
-      $("question-text").textContent = q.text;
-      if ($("short-input")) $("short-input").value = "";
-      if ($("essay-input")) $("essay-input").value = "";
-      resetFeedback();
-
-      const storyBox = $("story-box");
-      storyBox.style.display = "none";
-      storyBox.innerHTML = "";
-
-      updateProgress();
-    }
-
-    function submitEssay() {
-      const q = essayQuestions[currentIndex];
-      const inputEl = $("essay-input");
-      if (!inputEl) return;
-      const raw = inputEl.value.trim();
-      if (!raw) {
-        inputEl.focus();
-        return;
-      }
-
-      // Esai tidak dinilai benar/salah, hanya menampilkan contoh jawaban
-      const explanationText = `Contoh jawaban: ${q.sample}`;
-      showFeedback(true, explanationText);
-
-      const total = essayQuestions.length;
-      setTimeout(() => {
-        currentIndex++;
-        if (currentIndex >= total) {
           showResult();
-        } else {
-          showEssayQuestion();
         }
-      }, 2200);
+      }, 2000);
     }
 
-    // ========= FEEDBACK =========
-    function showFeedback(isCorrect, explanationText) {
-      const msg = getRandomMessage(isCorrect);
-      const icon = isCorrect ? "🌟" : "💡";
-      const cls = isCorrect ? "correct" : "wrong";
+    function showFeedback(isCorrect, explanation) {
+      feedbackAreaEl.innerHTML = "";
 
-      let html = `
-        <div class="feedback-box ${cls}">
-          <div class="feedback-icon">${icon}</div>
-          <div class="feedback-text">
-            <strong>${msg}</strong>
-      `;
+      const fbMsg = document.createElement("div");
+      fbMsg.className = "feedback-message";
 
-      if (!isCorrect && explanationText) {
-        html += `<div class="explanation"><strong>Pembahasan:</strong> ${explanationText}</div>`;
-      } else if (isCorrect && explanationText) {
-        html += `<div class="explanation">${explanationText}</div>`;
-      }
+      const iconSpan = document.createElement("div");
+      iconSpan.className = "feedback-icon";
+      iconSpan.textContent = isCorrect ? "✅" : "❌";
 
-      html += `</div></div>`;
-      $("feedback").innerHTML = html;
-      updateProgress();
+      const textSpan = document.createElement("div");
+      textSpan.className = isCorrect ? "feedback-text-correct" : "feedback-text-incorrect";
+      const messages = isCorrect ? correctMessages : incorrectMessages;
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      textSpan.textContent = randomMsg;
+
+      fbMsg.appendChild(iconSpan);
+      fbMsg.appendChild(textSpan);
+      feedbackAreaEl.appendChild(fbMsg);
+
+      const expDiv = document.createElement("div");
+      expDiv.className = "explanation";
+      expDiv.textContent = explanation;
+      feedbackAreaEl.appendChild(expDiv);
     }
 
-    // ========= HASIL AKHIR =========
     function showResult() {
-      hideElement("quiz-screen");
-      showElement("result-screen");
+      progressFillEl.style.width = "100%";
+      quizContentEl.classList.add("hidden");
+      resultViewEl.classList.remove("hidden");
 
-      let title = "";
-      let extra = "";
-      let icon = "";
+      resultCorrectEl.textContent = score;
 
-      if (currentMode === "essay") {
-        const total = essayQuestions.length;
-        $("result-detail").textContent = `Kamu telah menjawab ${total} soal esai.`;
-        title = "Bagus! Kamu sudah berlatih menulis! ✍️";
-        icon = "📖";
-        extra =
-          "Jawaban esai tidak dinilai otomatis, tetapi latihan ini membantumu menjadi lebih terampil menulis.";
+      let note = "";
+      let icon = "🏅";
+      let title = "Keren, kamu sudah menyelesaikan kuis!";
+
+      const percent = (score / totalQuestions) * 100;
+
+      if (percent === 100) {
+        icon = "👑";
+        title = "Sempurna! Kamu juara hari ini!";
+        note = "Kamu menjawab semua dengan benar. Teruslah menjadi anak yang taat aturan! ✨";
+      } else if (percent >= 80) {
+        icon = "🌟";
+        title = "Hebat! Nilaimu sangat bagus!";
+        note = "Sedikit lagi kamu bisa sempurna. Pertahankan sikap tertib dan rajinmu!";
+      } else if (percent >= 60) {
+        icon = "😊";
+        title = "Lumayan! Masih bisa ditingkatkan!";
+        note = "Kamu sudah berusaha dengan baik. Yuk, baca lagi catatan PPKn dan coba lagi!";
       } else {
-        const total =
-          currentMode === "mc" ? mcQuestions.length : shortQuestions.length;
-        const score = currentMode === "mc" ? scoreMc : scoreShort;
-        const percent = Math.round((score / total) * 100);
-        $("result-detail").textContent = `Kamu menjawab benar ${score} dari ${total} soal (${percent}%).`;
-
-        if (percent === 100) {
-          title = "Sempurna! 🌈";
-          icon = "🏆";
-          extra =
-            "Wah, semua benar! Kamu sangat menguasai materi Bab 3 dan 4!";
-        } else if (percent >= 80) {
-          title = "Keren sekali! 💖";
-          icon = "🌟";
-          extra =
-            "Sedikit lagi sempurna. Kamu sudah sangat paham, pertahankan ya!";
-        } else if (percent >= 60) {
-          title = "Bagus! Terus berlatih! 💪";
-          icon = "✨";
-          extra =
-            "Kamu sudah cukup baik, coba ulangi lagi agar makin mahir.";
-        } else {
-          title = "Ayo semangat lagi! 🌱";
-          icon = "💡";
-          extra =
-            "Belum apa-apa kalau masih salah. Ulangi latihan dan baca pembahasan pelan-pelan.";
-        }
+        icon = "🌱";
+        title = "Semangat! Jangan putus asa!";
+        note = "Nilai belum tinggi, tapi ini langkah awal yang baik. Terus belajar tentang aturan ya!";
       }
 
-      $("result-title").textContent = title;
-      $("result-extra").textContent = extra;
-      $("result-icon").textContent = icon;
+      resultIconEl.textContent = icon;
+      resultTitleEl.textContent = title;
+      resultNoteEl.textContent = note;
     }
+
+    function restartQuiz() {
+      currentIndex = 0;
+      score = 0;
+      quizContentEl.classList.remove("hidden");
+      resultViewEl.classList.add("hidden");
+      showQuestion();
+    }
+
+    restartBtn.addEventListener("click", restartQuiz);
+
+    // Mulai kuis
+    showQuestion();
   </script>
 </body>
 </html>
