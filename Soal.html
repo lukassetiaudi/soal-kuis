@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Kuis Interaktif PPKn – Pancasila Bab 2 Aturan (40 Soal)</title>
+  <title>Kuis Interaktif Agama Katolik – 60 Soal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
@@ -44,6 +44,7 @@
       overflow: hidden;
     }
 
+    /* Floating decorative icons */
     .float-icon {
       position: absolute;
       font-size: 54px;
@@ -322,6 +323,7 @@
       display: none !important;
     }
 
+    /* Result view */
     .result-view {
       text-align: center;
       padding: 20px 10px 8px;
@@ -382,6 +384,7 @@
       font-size: 1.2rem;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .quiz-card {
         padding: 18px 14px 20px;
@@ -421,7 +424,7 @@
         align-items: flex-start;
       }
       .float-icon {
-        display: none;
+        display: none; /* kurangi agar tidak mengganggu layar kecil */
       }
     }
   </style>
@@ -429,28 +432,29 @@
 <body>
   <div class="quiz-wrapper">
     <div class="quiz-card" id="quizCard">
-      <div class="float-icon one">⚖️</div>
+      <!-- Floating icons -->
+      <div class="float-icon one">🌈</div>
       <div class="float-icon two">⭐</div>
-      <div .class="float-icon three">🏠</div>
+      <div class="float-icon three">☁️</div>
 
       <div class="quiz-header">
         <div class="quiz-icon">
-          <span>🇮🇩</span>
+          <span>⛪</span>
         </div>
         <div>
-          <div class="quiz-title">Kuis Interaktif PPKn – Pancasila Bab 2: Aturan (40 Soal)</div>
-          <div class="quiz-subtitle">Jawab dengan tenang, setelah memilih jawaban soal akan otomatis berganti.</div>
+          <div class="quiz-title">Kuis Interaktif – Allah & Ciptaan-Nya, Rumahku, Sekolahku</div>
+          <div class="quiz-subtitle">Jawab dengan tenang, setiap jawaban akan langsung berpindah ke soal berikutnya.</div>
         </div>
       </div>
 
       <div class="quiz-progress">
         <div>
-          Soal ke-<span id="currentNumber">1</span> dari <span id="totalNumber">40</span>
+          Soal ke-<span id="currentNumber">1</span> dari <span id="totalNumber">60</span>
           <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
           </div>
         </div>
-        <div class="question-count" id="miniCounter">1 / 40</div>
+        <div class="question-count" id="miniCounter">1 / 60</div>
       </div>
 
       <div id="quizContent">
@@ -461,7 +465,9 @@
           <div class="question-text" id="questionText">
             Pertanyaan akan muncul di sini.
           </div>
-          <div class="options-list" id="optionsList"></div>
+          <div class="options-list" id="optionsList">
+            <!-- Opsi dibuat dengan JavaScript -->
+          </div>
           <div class="feedback-area" id="feedbackArea"></div>
         </div>
 
@@ -476,11 +482,12 @@
         </div>
       </div>
 
+      <!-- Result view (disembunyikan dulu) -->
       <div id="resultView" class="result-view hidden">
         <div class="result-icon" id="resultIcon">🏅</div>
         <div class="result-title" id="resultTitle">Selesai!</div>
         <div class="result-score">
-          Kamu menjawab <span id="resultCorrect">0</span> dari <span id="resultTotal">40</span> soal dengan benar.
+          Kamu menjawab <span id="resultCorrect">0</span> dari <span id="resultTotal">60</span> soal dengan benar.
         </div>
         <div class="result-note" id="resultNote">
           Terima kasih sudah berjuang sampai akhir! 😊
@@ -490,533 +497,679 @@
           <span>Ulangi Kuis</span>
         </button>
       </div>
+
     </div>
   </div>
 
   <script>
     // ==============================
-    // DATA SOAL PANCASILA BAB 2 - ATURAN (40 SOAL)
+    // DATA SOAL (60 SOAL)
     // ==============================
     const questions = [
       // 1
       {
-        topic: "Pengertian Aturan",
-        question: "Apa yang dimaksud dengan aturan menurut catatan pelajaran?",
-        options: [
-          "Hal yang boleh dilakukan kalau ingin saja",
-          "Tindakan yang harus dilakukan",
-          "Cerita yang menyenangkan",
-          "Mainan baru di sekolah"
-        ],
-        correctIndex: 1,
-        explanation: "Aturan adalah tindakan atau ketentuan yang harus dilakukan, bukan sekadar pilihan."
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Berapa hari Allah menciptakan langit, bumi, dan segala isinya?",
+        options: ["6 hari", "5 hari", "7 hari", "3 hari"],
+        correctIndex: 0,
+        explanation: "Dalam Kitab Kejadian diceritakan bahwa Allah menciptakan langit, bumi, dan segala isinya selama 6 hari, lalu pada hari ke-7 Allah beristirahat."
       },
       // 2
       {
-        topic: "Tujuan Aturan",
-        question: "Aturan dibuat agar...",
-        options: [
-          "Kegiatan berjalan dengan lancar",
-          "Semua orang bingung",
-          "Suasana menjadi kacau",
-          "Tidak ada yang tertib"
-        ],
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Pada hari ke-1 Allah menciptakan apa?",
+        options: ["Terang dan gelap", "Lautan dan daratan", "Matahari dan bulan", "Ikan dan burung"],
         correctIndex: 0,
-        explanation: "Aturan dibuat supaya kegiatan berjalan dengan lancar dan tertib."
+        explanation: "Hari pertama, Allah memisahkan terang dari gelap. Terang disebut siang dan gelap disebut malam."
       },
       // 3
       {
-        topic: "Kewajiban Taat Aturan",
-        question: "Siapa yang harus menaati aturan?",
-        options: [
-          "Hanya guru dan orang tua",
-          "Hanya siswa yang rajin",
-          "Semua orang",
-          "Hanya anak kecil"
-        ],
-        correctIndex: 2,
-        explanation: "Aturan harus ditaati oleh semua orang yang ada di lingkungan tersebut."
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Pada hari ke-2 Allah menciptakan cakrawala yang disebut juga dengan...",
+        options: ["Gunung", "Langit", "Laut", "Daratan"],
+        correctIndex: 1,
+        explanation: "Pada hari ke-2, Allah menciptakan cakrawala yang kita sebut langit, pemisah antara air di atas dan air di bawah."
       },
       // 4
       {
-        topic: "Manfaat Aturan",
-        question: "Manakah yang merupakan manfaat menaati aturan?",
-        options: [
-          "Hidup menjadi rukun, tertib, dan disiplin",
-          "Hidup menjadi kacau",
-          "Tidak punya teman",
-          "Suasana jadi menakutkan"
-        ],
-        correctIndex: 0,
-        explanation: "Menaati aturan membuat hidup rukun, tertib/teratur, dan melatih kita disiplin."
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Pada hari ke-3 Allah menciptakan...",
+        options: ["Matahari dan bulan", "Ikan dan burung", "Lautan, daratan, dan tumbuh-tumbuhan", "Binatang darat dan manusia"],
+        correctIndex: 2,
+        explanation: "Hari ke-3: Allah menampakkan daratan, mengumpulkan lautan, dan menumbuhkan berbagai tumbuh-tumbuhan."
       },
       // 5
       {
-        topic: "Manfaat Aturan",
-        question: "Jika semua orang disiplin menaati aturan, maka...",
-        options: [
-          "Sering terjadi pertengkaran",
-          "Suasana menjadi rukun dan tertib",
-          "Sekolah menjadi kotor",
-          "Tidak ada yang mau belajar"
-        ],
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Pada hari ke-4 Allah menciptakan...",
+        options: ["Malaikat dan manusia", "Matahari, bulan, dan bintang", "Ikan dan burung", "Langit dan bumi"],
         correctIndex: 1,
-        explanation: "Disiplin dalam menaati aturan membuat suasana menjadi rukun dan tertib."
+        explanation: "Hari ke-4, Allah menciptakan matahari untuk menguasai siang, bulan dan bintang-bintang untuk menguasai malam."
       },
       // 6
       {
-        topic: "Aturan di Rumah",
-        question: "Aturan di rumah dibuat oleh...",
-        options: [
-          "Tetangga",
-          "Seluruh keluarga",
-          "Teman bermain",
-          "Orang asing"
-        ],
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Pada hari ke-5 Allah menciptakan makhluk hidup apa saja?",
+        options: ["Binatang darat dan manusia", "Ikan di laut dan burung di udara", "Tumbuhan dan manusia", "Malaikat dan hewan"],
         correctIndex: 1,
-        explanation: "Aturan di rumah dibuat dan disepakati oleh seluruh anggota keluarga."
+        explanation: "Hari ke-5 Allah menciptakan segala hewan yang hidup di air dan segala makhluk yang bersayap di udara."
       },
       // 7
       {
-        topic: "Aturan di Rumah",
-        question: "Contoh aturan di rumah adalah...",
-        options: [
-          "Menjaga kebersihan rumah",
-          "Berteriak sekeras-kerasnya",
-          "Tidur sepanjang hari",
-          "Membuang sampah di lantai"
-        ],
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Pada hari ke-6 Allah menciptakan...",
+        options: ["Binatang darat dan manusia", "Langit dan bumi", "Matahari dan bulan", "Ikan dan burung"],
         correctIndex: 0,
-        explanation: "Menjaga kebersihan rumah termasuk contoh aturan yang biasa ditetapkan di rumah."
+        explanation: "Hari ke-6 Allah menciptakan segala binatang di darat dan manusia sebagai puncak ciptaan-Nya."
       },
       // 8
       {
-        topic: "Aturan di Rumah",
-        question: "Manakah yang termasuk aturan menjaga kebersihan diri?",
-        options: [
-          "Tidak mau mandi",
-          "Jarang menyikat gigi",
-          "Menjaga kebersihan diri",
-          "Tidak mau keramas"
-        ],
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Apa yang dilakukan Allah pada hari ke-7?",
+        options: ["Menciptakan manusia", "Menciptakan langit", "Beristirahat dan memberkati ciptaan-Nya", "Menciptakan hewan laut"],
         correctIndex: 2,
-        explanation: "Menjaga kebersihan diri adalah salah satu aturan penting di rumah."
+        explanation: "Pada hari ke-7 Allah menyelesaikan pekerjaan-Nya, memberkati hari itu dan beristirahat."
       },
       // 9
       {
-        topic: "Aturan di Rumah",
-        question: "Contoh aturan di rumah yang berkaitan dengan kerapian adalah...",
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Mengapa manusia harus menjaga alam ciptaan Allah?",
         options: [
-          "Merapikan tempat tidur",
-          "Melempar bantal ke lantai",
-          "Membiarkan kamar berantakan",
-          "Menginjak-injak selimut"
+          "Supaya manusia terkenal",
+          "Supaya alam cepat rusak",
+          "Karena menjaga alam adalah tugas semua manusia",
+          "Supaya tidak perlu bekerja"
         ],
-        correctIndex: 0,
-        explanation: "Merapikan tempat tidur adalah contoh aturan di rumah yang berkaitan dengan kerapian."
+        correctIndex: 2,
+        explanation: "Alam adalah ciptaan Allah yang harus dirawat. Menjaga dan merawatnya adalah tugas semua manusia sebagai tanda syukur."
       },
       // 10
       {
-        topic: "Aturan di Rumah",
-        question: "Setelah selesai bermain, kita harus...",
-        options: [
-          "Meninggalkan mainan berserakan",
-          "Merapikan mainan",
-          "Melempar mainan ke luar rumah",
-          "Memberikan mainan pada orang asing"
-        ],
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Bumi yang dirawat dengan baik akan menjadi...",
+        options: ["Gersang dan menakutkan", "Bersih, indah, dan nyaman", "Kotor dan berbau", "Penuh sampah"],
         correctIndex: 1,
-        explanation: "Merapikan mainan setelah digunakan membuat mainan rapi dan tidak cepat rusak."
+        explanation: "Bumi yang bersih dan dirawat akan menjadi tempat tinggal yang indah, sehat, dan nyaman bagi semua makhluk."
       },
       // 11
       {
-        topic: "Aturan di Rumah",
-        question: "Mengapa kita perlu berpamitan jika ingin keluar rumah?",
-        options: [
-          "Supaya teman bangga",
-          "Supaya orang tua tidak khawatir",
-          "Supaya bisa pulang larut malam",
-          "Supaya tidak perlu kembali lagi"
-        ],
-        correctIndex: 1,
-        explanation: "Meminta izin sebelum keluar rumah membuat orang tua tidak khawatir dengan keadaan kita."
+        topic: "Allah Menciptakan Manusia",
+        question: "Siapakah manusia pertama yang Allah ciptakan?",
+        options: ["Nuh", "Zakheus", "Adam", "Abraham"],
+        correctIndex: 2,
+        explanation: "Manusia pertama yang Allah ciptakan adalah Adam."
       },
       // 12
       {
-        topic: "Aturan di Rumah",
-        question: "Contoh aturan di rumah yang berkaitan dengan barang pribadi adalah...",
-        options: [
-          "Meninggalkan sepatu di mana saja",
-          "Menyimpan sepatu di rak sepatu",
-          "Meminjam sepatu teman tanpa izin",
-          "Melempar sepatu ke taman"
-        ],
-        correctIndex: 1,
-        explanation: "Menyimpan sepatu di rak sepatu membuat rumah lebih rapi dan bersih."
+        topic: "Allah Menciptakan Manusia",
+        question: "Siapakah manusia yang diciptakan Allah setelah Adam?",
+        options: ["Hawa", "Maria", "Eva dan Maria", "Zakheus"],
+        correctIndex: 0,
+        explanation: "Setelah Adam, Allah menciptakan Hawa sebagai penolong yang sepadan bagi Adam."
       },
       // 13
       {
-        topic: "Aturan di Rumah",
-        question: "Belajar dengan rajin termasuk...",
-        options: [
-          "Hak orang tua",
-          "Kewajiban anak di rumah",
-          "Permainan baru",
-          "Aturan di jalan raya"
-        ],
+        topic: "Allah Menciptakan Manusia",
+        question: "Adam adalah seorang...",
+        options: ["Perempuan", "Laki-laki", "Malaikat", "Nabi"],
         correctIndex: 1,
-        explanation: "Belajar dengan rajin adalah salah satu kewajiban dan aturan bagi anak di rumah."
+        explanation: "Adam adalah laki-laki pertama yang Allah ciptakan."
       },
       // 14
       {
-        topic: "Aturan di Rumah",
-        question: "Sarapan sebelum berangkat sekolah adalah...",
-        options: [
-          "Aturan yang tidak penting",
-          "Contoh aturan di rumah",
-          "Hal yang harus dihindari",
-          "Tidak ada hubungannya dengan kesehatan"
-        ],
+        topic: "Allah Menciptakan Manusia",
+        question: "Hawa adalah seorang...",
+        options: ["Laki-laki", "Perempuan", "Malaikat", "Anak-anak"],
         correctIndex: 1,
-        explanation: "Sarapan termasuk aturan di rumah yang baik untuk menjaga kesehatan anak."
+        explanation: "Hawa adalah perempuan yang Allah ciptakan dari tulang rusuk Adam."
       },
       // 15
       {
-        topic: "Aturan di Rumah",
-        question: "Contoh aturan di rumah yang membantu orang tua adalah...",
-        options: [
-          "Membiarkan orang tua bekerja sendiri",
-          "Membantu pekerjaan rumah",
-          "Meninggalkan piring kotor",
-          "Mengacaukan dapur"
-        ],
+        topic: "Allah Menciptakan Manusia",
+        question: "Adam diciptakan oleh Allah dari...",
+        options: ["Air hujan", "Debu tanah", "Batu karang", "Cahaya"],
         correctIndex: 1,
-        explanation: "Membantu pekerjaan rumah membuat pekerjaan orang tua lebih ringan dan cepat selesai."
+        explanation: "Allah membentuk Adam dari debu tanah dan menghembuskan napas hidup ke dalam hidungnya."
       },
       // 16
       {
-        topic: "Aturan di Rumah",
-        question: "Menghormati orang tua merupakan...",
-        options: [
-          "Aturan yang boleh dilanggar",
-          "Sikap terpuji dan aturan di rumah",
-          "Permainan",
-          "Hak anak"
-        ],
-        correctIndex: 1,
-        explanation: "Menghormati dan mematuhi nasihat orang tua adalah sikap terpuji dan menjadi aturan di rumah."
+        topic: "Allah Menciptakan Manusia",
+        question: "Hawa diciptakan oleh Allah dari...",
+        options: ["Tanah liat", "Debu jalanan", "Salah satu tulang rusuk Adam", "Air sungai"],
+        correctIndex: 2,
+        explanation: "Hawa diciptakan dari salah satu tulang rusuk Adam ketika Adam sedang tidur."
       },
       // 17
       {
-        topic: "Manfaat Kebersihan Rumah",
-        question: "Manfaat menjaga kebersihan rumah adalah...",
-        options: [
-          "Rumah menjadi kotor dan bau",
-          "Rumah menjadi bersih, nyaman, dan sehat",
-          "Rumah penuh sampah",
-          "Rumah dipenuhi serangga"
-        ],
-        correctIndex: 1,
-        explanation: "Menjaga kebersihan rumah membuat rumah menjadi bersih, nyaman, dan sehat."
+        topic: "Allah Menciptakan Manusia",
+        question: "Tuhan menempatkan manusia pertama di...",
+        options: ["Gunung Sinai", "Yerusalem", "Taman Eden", "Padang gurun"],
+        correctIndex: 2,
+        explanation: "Allah menempatkan Adam dan Hawa di Taman Eden, tempat yang indah dan subur."
       },
       // 18
       {
-        topic: "Manfaat Kebersihan Rumah",
-        question: "Merapikan mainan setelah digunakan akan membuat...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Mengapa manusia disebut ciptaan Allah yang istimewa?",
         options: [
-          "Mainan sulit ditemukan",
-          "Mainan cepat rusak",
-          "Mainan jadi rapi dan tidak mudah rusak",
-          "Orang tua marah"
+          "Karena paling kuat secara fisik",
+          "Karena bisa terbang",
+          "Karena diciptakan sesuai gambar dan rupa Allah",
+          "Karena tidak pernah berdosa"
         ],
         correctIndex: 2,
-        explanation: "Merapikan mainan menjadikannya rapi dan membantu agar tidak cepat rusak atau hilang."
+        explanation: "Manusia istimewa karena diciptakan menurut gambar dan rupa Allah, diberi akal budi, hati nurani, dan kebebasan."
       },
       // 19
       {
-        topic: "Manfaat Membantu di Rumah",
-        question: "Membantu pekerjaan rumah bermanfaat untuk...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Manusia diciptakan sesuai gambar dan rupa Allah artinya...",
         options: [
-          "Membuat pekerjaan semakin berat",
-          "Membuat pekerjaan cepat selesai dan menjadi ringan",
-          "Membuat rumah makin kotor",
-          "Mengganggu orang tua"
+          "Wajah manusia sama dengan Allah",
+          "Manusia bisa menjadi Allah",
+          "Manusia diberi akal budi, hati nurani, dan kebebasan untuk berbuat baik",
+          "Manusia tidak perlu taat pada Allah"
         ],
-        correctIndex: 1,
-        explanation: "Membantu pekerjaan rumah membuat pekerjaan menjadi lebih ringan dan cepat selesai."
+        correctIndex: 2,
+        explanation: "Gambar dan rupa Allah bukan soal wajah, tetapi tentang akal budi, hati nurani, dan kebebasan untuk memilih kebaikan."
       },
       // 20
       {
-        topic: "Meminta Izin",
-        question: "Meminta izin sebelum keluar rumah membuat orang tua...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Akal budi yang diberikan Allah kepada manusia berguna untuk...",
         options: [
-          "Tidak peduli",
-          "Semakin marah",
-          "Tidak khawatir",
-          "Tidak mau menasihati"
+          "Berbohong dengan pandai",
+          "Berpikir dan memilih yang baik",
+          "Memarahi orang lain",
+          "Mengabaikan perintah Allah"
         ],
-        correctIndex: 2,
-        explanation: "Dengan meminta izin, orang tua mengetahui ke mana kita pergi sehingga tidak khawatir."
+        correctIndex: 1,
+        explanation: "Akal budi membantu manusia berpikir dan membedakan mana yang baik dan mana yang tidak baik."
       },
       // 21
       {
-        topic: "Aturan di Sekolah",
-        question: "Aturan di sekolah dibuat oleh...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Hati nurani yang Allah berikan kepada manusia membantu kita untuk...",
         options: [
-          "Teman sebaya",
-          "Sekolah",
-          "Orang di luar sekolah",
-          "Tetangga"
+          "Mengasihi sesama dan merasa bersalah jika berbuat salah",
+          "Selalu menang dalam permainan",
+          "Selalu kaya",
+          "Tidak pernah belajar"
         ],
-        correctIndex: 1,
-        explanation: "Aturan di sekolah dibuat oleh pihak sekolah untuk kebaikan seluruh warga sekolah."
+        correctIndex: 0,
+        explanation: "Hati nurani menolong kita mengasihi sesama dan menyadari jika kita berbuat dosa atau menyakiti orang lain."
       },
       // 22
       {
-        topic: "Aturan di Sekolah",
-        question: "Aturan di sekolah harus ditaati oleh...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Kebebasan yang diberikan Allah seharusnya digunakan untuk...",
         options: [
-          "Hanya siswa baru",
-          "Hanya guru",
-          "Semua warga sekolah",
-          "Hanya kepala sekolah"
+          "Memilih melakukan kebaikan",
+          "Seenaknya sendiri",
+          "Menyakiti teman",
+          "Melanggar aturan sekolah"
         ],
-        correctIndex: 2,
-        explanation: "Aturan di sekolah ditaati oleh semua warga sekolah, termasuk siswa, guru, dan petugas lainnya."
+        correctIndex: 0,
+        explanation: "Allah memberi kebebasan supaya manusia dapat memilih kebaikan, bukan seenaknya sendiri."
       },
       // 23
       {
-        topic: "Warga Sekolah",
-        question: "Yang termasuk warga sekolah adalah...",
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Contoh sikap syukur kepada Allah atas ciptaan-Nya adalah...",
         options: [
-          "Siswa, guru, kepala sekolah, karyawan, satpam",
-          "Hanya siswa",
-          "Hanya guru",
-          "Hanya satpam dan karyawan"
+          "Membuang sampah sembarangan",
+          "Merusak tanaman",
+          "Menjaga kebersihan bumi dan tidak merusak alam",
+          "Membakar hutan untuk bermain"
         ],
-        correctIndex: 0,
-        explanation: "Warga sekolah terdiri dari siswa, guru, kepala sekolah, karyawan, dan satpam."
+        correctIndex: 2,
+        explanation: "Menjaga dan merawat alam adalah cara kita bersyukur kepada Allah atas karunia ciptaan-Nya."
       },
       // 24
       {
-        topic: "Aturan di Sekolah",
-        question: "Contoh aturan di sekolah adalah datang...",
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Jika kita merusak alam ciptaan Allah, maka...",
         options: [
-          "Terlambat sesuka hati",
-          "Tepat waktu (tidak terlambat)",
-          "Ketika pelajaran selesai",
-          "Hanya saat upacara"
+          "Bumi menjadi indah",
+          "Bumi menjadi kotor dan tidak nyaman",
+          "Banyak bunga tumbuh",
+          "Semakin sehat"
         ],
         correctIndex: 1,
-        explanation: "Datang tepat waktu adalah salah satu aturan penting di sekolah."
+        explanation: "Merusak alam membuat bumi menjadi kotor, tidak nyaman, dan membahayakan makhluk hidup."
       },
       // 25
       {
-        topic: "Aturan di Sekolah",
-        question: "Saat guru menjelaskan pelajaran, siswa wajib...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Sebagai ciptaan yang istimewa, manusia dipanggil untuk...",
         options: [
-          "Mengobrol dengan teman",
-          "Bermain sendiri",
-          "Mendengarkan penjelasan guru",
-          "Keluar kelas tanpa izin"
+          "Hanya memikirkan diri sendiri",
+          "Mengasihi sesama dan menjaga ciptaan Allah",
+          "Malas belajar",
+          "Tidak mau peduli pada lingkungan"
         ],
-        correctIndex: 2,
-        explanation: "Mendengarkan penjelasan guru adalah bagian dari mematuhi aturan di sekolah."
+        correctIndex: 1,
+        explanation: "Manusia dipanggil untuk mengasihi sesama dan menjaga ciptaan Allah sebagai wujud cinta kepada-Nya."
       },
       // 26
       {
-        topic: "Aturan di Sekolah",
-        question: "Menjaga kebersihan lingkungan sekolah termasuk...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Manusia diciptakan Allah berbeda dengan hewan karena...",
         options: [
-          "Aturan di rumah",
-          "Aturan di sekolah",
-          "Aturan di jalan",
-          "Aturan di kantin saja"
+          "Manusia bisa makan",
+          "Manusia punya akal budi, hati nurani, dan kebebasan",
+          "Manusia bisa tidur",
+          "Manusia bisa berlari"
         ],
         correctIndex: 1,
-        explanation: "Menjaga kebersihan lingkungan sekolah adalah salah satu contoh aturan di sekolah."
+        explanation: "Keistimewaan manusia bukan hanya tubuh, tetapi karena diberi akal budi, hati nurani, dan kebebasan."
       },
       // 27
       {
-        topic: "Aturan di Sekolah",
-        question: "Bermain dengan rukun di sekolah berarti...",
+        topic: "Allah Menciptakan Manusia",
+        question: "Tugas manusia terhadap sesama adalah...",
         options: [
-          "Suka bertengkar",
-          "Saling mengejek",
-          "Bermain tanpa menghina dan menyakiti teman",
+          "Membenci teman",
+          "Mengejek terus-menerus",
+          "Mengasihi dan menghargai sesama",
           "Tidak mau berteman"
         ],
         correctIndex: 2,
-        explanation: "Bermain dengan rukun berarti saling menghargai dan tidak menyakiti teman."
+        explanation: "Allah memanggil kita untuk mengasihi dan menghargai setiap orang karena semua adalah ciptaan-Nya."
       },
       // 28
       {
-        topic: "Aturan di Sekolah",
-        question: "Mengapa kita harus memakai seragam sesuai hari yang ditentukan?",
-        options: [
-          "Supaya bisa pamer baju mahal",
-          "Supaya terlihat berbeda sendiri",
-          "Karena itu aturan sekolah yang harus ditaati",
-          "Supaya tidak dikenal guru"
-        ],
-        correctIndex: 2,
-        explanation: "Memakai seragam sesuai hari adalah bagian dari tata tertib yang harus ditaati siswa."
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Siapakah pencipta langit, bumi, dan segala isinya?",
+        options: ["Manusia", "Allah", "Malaikat", "Roh jahat"],
+        correctIndex: 1,
+        explanation: "Hanya Allah yang menciptakan langit, bumi, dan segala isinya, bukan manusia ataupun makhluk lain."
       },
       // 29
       {
-        topic: "Akibat Melanggar Aturan Sekolah",
-        question: "Jika tidak menaati aturan di sekolah, maka...",
-        options: [
-          "Suasana menjadi kacau dan tidak tertib",
-          "Semua orang senang",
-          "Sekolah semakin bersih",
-          "Pelajaran semakin mudah"
-        ],
-        correctIndex: 0,
-        explanation: "Melanggar aturan membuat suasana sekolah menjadi kacau dan tidak tertib."
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Ciptaan Allah yang menjadi tempat tinggal bagi manusia adalah...",
+        options: ["Matahari", "Bulan", "Bumi", "Bintang"],
+        correctIndex: 2,
+        explanation: "Allah menciptakan bumi sebagai tempat tinggal bagi manusia dan makhluk hidup lainnya."
       },
       // 30
       {
-        topic: "Antre di Sekolah",
-        question: "Saat akan menggunakan kamar mandi atau membeli makanan di kantin, kita harus...",
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Apa sikap yang salah terhadap ciptaan Allah?",
         options: [
-          "Menyelak barisan",
-          "Mengantre dengan tertib",
-          "Berdesak-desakan di depan",
-          "Menyuruh teman mengalah"
+          "Merawat tanaman",
+          "Membuang sampah di sungai",
+          "Menghemat air",
+          "Menanam pohon"
         ],
         correctIndex: 1,
-        explanation: "Mengantre dengan tertib adalah aturan yang harus ditaati agar semua mendapat giliran dengan adil."
+        explanation: "Membuang sampah di sungai merusak alam dan mengotori ciptaan Allah."
       },
       // 31
       {
-        topic: "Aturan di Lingkungan Sekitar",
-        question: "Contoh aturan di lingkungan sekitar rumah adalah...",
+        topic: "Rumahku",
+        question: "Apa arti rumah menurut catatan pelajaran?",
         options: [
-          "Membuang sampah ke selokan",
-          "Menjaga kebersihan selokan dan lingkungan bersama-sama",
-          "Membakar sampah di jalan",
-          "Melempar sampah ke rumah tetangga"
+          "Tempat bermain dengan teman",
+          "Tempat berjualan",
+          "Tempat tinggal kita bersama keluarga",
+          "Tempat menyimpan barang saja"
         ],
-        correctIndex: 1,
-        explanation: "Menjaga kebersihan selokan dan lingkungan bersama-sama adalah aturan penting di lingkungan sekitar."
+        correctIndex: 2,
+        explanation: "Rumah adalah tempat tinggal kita bersama dengan keluarga."
       },
       // 32
       {
-        topic: "Aturan di Lingkungan Sekitar",
-        question: "Anak-anak dilarang bermain di jalan raya yang ramai karena...",
+        topic: "Rumahku",
+        question: "Salah satu manfaat rumah adalah...",
         options: [
-          "Tidak seru",
-          "Bisa mengganggu lalu lintas dan membahayakan keselamatan",
-          "Tidak boleh bertemu teman",
-          "Akan cepat bosan"
+          "Membuat kita malas belajar",
+          "Melindungi kita dari cuaca panas, dingin, angin, dan hujan",
+          "Supaya bisa membuang sampah sembarangan",
+          "Agar kita tidak sekolah"
         ],
         correctIndex: 1,
-        explanation: "Bermain di jalan raya yang ramai sangat berbahaya dan bisa mengganggu kelancaran lalu lintas."
+        explanation: "Rumah melindungi kita dari panas, dingin, angin, dan hujan sehingga kita merasa aman dan nyaman."
       },
       // 33
       {
-        topic: "Aturan Lalu Lintas",
-        question: "Contoh sikap taat aturan lalu lintas bagi pejalan kaki adalah...",
+        topic: "Rumahku",
+        question: "Sikap yang baik ketika berada di rumah adalah...",
         options: [
-          "Menyeberang sembarangan di tikungan",
-          "Berjalan di tengah jalan raya",
-          "Menyeberang di zebra cross dan melihat kiri-kanan",
-          "Mengejar kendaraan di jalan"
+          "Suka membantah orang tua",
+          "Sopan, rajin, dan saling menyayangi",
+          "Berteriak dan berkelahi",
+          "Merusak barang di rumah"
         ],
-        correctIndex: 2,
-        explanation: "Menyeberang di zebra cross dan melihat kiri-kanan adalah bentuk ketaatan pada aturan lalu lintas."
+        correctIndex: 1,
+        explanation: "Di rumah kita harus bersikap sopan, rajin membantu, dan saling menyayangi anggota keluarga."
       },
       // 34
       {
-        topic: "Disiplin",
-        question: "Disiplin berarti...",
-        options: [
-          "Suka melanggar aturan",
-          "Kesediaan menaati aturan dengan sadar",
-          "Takut pada guru",
-          "Hanya patuh bila diawasi"
-        ],
-        correctIndex: 1,
-        explanation: "Disiplin adalah kesediaan menaati aturan dengan sadar, bukan karena takut diawasi."
+        topic: "Rumahku",
+        question: "Bagian rumah yang biasanya dipakai untuk menerima tamu adalah...",
+        options: ["Kamar mandi", "Dapur", "Ruang tamu", "Garasi"],
+        correctIndex: 2,
+        explanation: "Ruang tamu adalah tempat untuk menerima tamu yang datang ke rumah."
       },
       // 35
       {
-        topic: "Disiplin di Rumah",
-        question: "Contoh sikap disiplin di rumah adalah...",
+        topic: "Rumahku",
+        question: "Ciri-ciri rumah yang sehat adalah...",
         options: [
-          "Bangun pagi tepat waktu dan merapikan tempat tidur",
-          "Bangun siang dan langsung bermain",
-          "Marah ketika diminta membantu",
-          "Tidak mau mandi"
+          "Gelap dan pengap",
+          "Penuh sampah",
+          "Memiliki jendela dan ventilasi, bersih, rapi",
+          "Selalu tertutup dan kotor"
         ],
-        correctIndex: 0,
-        explanation: "Bangun pagi tepat waktu dan merapikan tempat tidur menunjukkan sikap disiplin di rumah."
+        correctIndex: 2,
+        explanation: "Rumah sehat memiliki jendela dan ventilasi udara, bersih, dan rapi."
       },
       // 36
       {
-        topic: "Manfaat Disiplin",
-        question: "Salah satu manfaat bersikap disiplin adalah...",
+        topic: "Rumahku",
+        question: "Manfaat rumah yang bersih adalah...",
         options: [
-          "Sulit dipercaya orang lain",
-          "Tidak disukai teman",
-          "Lebih mudah dipercaya dan dihargai",
-          "Tidak perlu belajar"
+          "Menjadi sarang nyamuk dan tikus",
+          "Menjadi sehat, nyaman, dan indah",
+          "Membuat penghuni sakit",
+          "Bau dan kotor"
         ],
-        correctIndex: 2,
-        explanation: "Orang yang disiplin biasanya lebih mudah dipercaya dan dihargai oleh orang lain."
+        correctIndex: 1,
+        explanation: "Rumah yang bersih membuat penghuninya sehat, nyaman, indah, dan terhindar dari sarang nyamuk, kecoa, dan tikus."
       },
       // 37
       {
-        topic: "Akibat Melanggar Aturan Lingkungan",
-        question: "Membuang sampah sembarangan di sungai dapat menyebabkan...",
+        topic: "Rumahku – Zakheus",
+        question: "Siapakah Zakheus menurut cerita dalam Kitab Suci?",
         options: [
-          "Air menjadi jernih",
-          "Lingkungan makin bersih",
-          "Banjir dan lingkungan kotor",
-          "Semua orang senang"
+          "Seorang nelayan",
+          "Seorang murid Yesus",
+          "Seorang pemungut cukai yang pendek",
+          "Seorang raja yang kaya"
         ],
         correctIndex: 2,
-        explanation: "Membuang sampah sembarangan di sungai dapat menyebabkan banjir dan lingkungan menjadi kotor."
+        explanation: "Zakheus adalah seorang pemungut cukai yang tubuhnya pendek."
       },
       // 38
       {
-        topic: "Hak dan Aturan",
-        question: "Dengan tertib membuang sampah pada tempatnya, kita menghormati hak orang lain untuk...",
+        topic: "Rumahku – Zakheus",
+        question: "Mengapa Zakheus memanjat pohon ara?",
         options: [
-          "Mendapat lingkungan yang bersih dan sehat",
-          "Tidak peduli terhadap lingkungan",
-          "Mendapat tempat bermain yang kotor",
-          "Boleh membuang sampah sembarangan"
+          "Karena ingin bersembunyi",
+          "Karena ingin bermain",
+          "Karena ingin melihat Yesus",
+          "Karena takut pada orang banyak"
         ],
-        correctIndex: 0,
-        explanation: "Lingkungan bersih adalah hak semua orang. Menjaga kebersihan berarti menghormati hak orang lain."
+        correctIndex: 2,
+        explanation: "Karena tubuhnya pendek dan banyak orang, Zakheus memanjat pohon ara untuk dapat melihat Yesus."
       },
       // 39
       {
-        topic: "Peran Anak",
-        question: "Jika ada teman yang melanggar aturan, sikap yang baik adalah...",
+        topic: "Rumahku – Zakheus",
+        question: "Pekerjaan Zakheus adalah...",
         options: [
-          "Ikut-ikutan melanggar",
-          "Membiarkan saja",
-          "Mengingatkan dengan sopan dan baik",
-          "Mengejeknya di depan teman"
+          "Nelayan",
+          "Pemungut cukai (pemungut pajak)",
+          "Tukang kayu",
+          "Petani gandum"
         ],
-        correctIndex: 2,
-        explanation: "Mengingatkan teman dengan sopan menunjukkan bahwa kita peduli dan menghargai aturan."
+        correctIndex: 1,
+        explanation: "Zakheus adalah pemungut cukai, yaitu orang yang mengambil uang pajak dari masyarakat Yahudi."
       },
       // 40
       {
-        topic: "Sikap Terhadap Aturan",
-        question: "Jika ada aturan yang belum kita mengerti, sebaiknya kita...",
+        topic: "Rumahku – Zakheus",
+        question: "Mengapa Zakheus dianggap orang berdosa?",
         options: [
-          "Langsung melanggar saja",
-          "Mengabaikannya",
-          "Bertanya dengan sopan kepada orang tua atau guru",
-          "Mengajak teman untuk melawan"
+          "Karena rajin berdoa",
+          "Karena pemungut cukai dianggap korupsi atas pekerjaannya",
+          "Karena tubuhnya pendek",
+          "Karena ia miskin"
+        ],
+        correctIndex: 1,
+        explanation: "Saat itu pemungut cukai dianggap orang berdosa karena sering mengambil uang lebih (korupsi)."
+      },
+      // 41
+      {
+        topic: "Rumahku – Zakheus",
+        question: "Apa yang terjadi ketika Yesus datang ke rumah Zakheus?",
+        options: [
+          "Zakheus diusir",
+          "Zakheus marah",
+          "Zakheus bertobat",
+          "Tidak terjadi apa-apa"
         ],
         correctIndex: 2,
-        explanation: "Bertanya dengan sopan kepada orang tua atau guru akan membantu kita memahami aturan dengan benar."
+        explanation: "Kehadiran Yesus membuat Zakheus bertobat dan berubah menjadi lebih baik."
+      },
+      // 42
+      {
+        topic: "Rumahku – Zakheus",
+        question: "Apa janji Zakheus setelah bertobat?",
+        options: [
+          "Akan menjadi lebih kaya",
+          "Akan pergi dari Yerikho",
+          "Akan memberikan setengah hartanya kepada orang miskin dan mengembalikan empat kali lipat kepada orang yang ia peras",
+          "Akan berhenti bekerja"
+        ],
+        correctIndex: 2,
+        explanation: "Zakheus berjanji memberi setengah hartanya kepada orang miskin dan mengembalikan empat kali lipat kepada orang yang pernah ia rugikan."
+      },
+      // 43
+      {
+        topic: "Rumahku – Zakheus",
+        question: "Kisah Zakheus terdapat dalam Kitab...",
+        options: ["Matius", "Lukas", "Markus", "Yohanes"],
+        correctIndex: 1,
+        explanation: "Kisah Zakheus terdapat dalam Injil Lukas."
+      },
+      // 44
+      {
+        topic: "Sekolahku",
+        question: "Apa arti sekolah menurut catatan pelajaran?",
+        options: [
+          "Tempat menonton film",
+          "Tempat berlangsung kegiatan belajar mengajar",
+          "Tempat bermain sepenuhnya",
+          "Tempat tinggal guru"
+        ],
+        correctIndex: 1,
+        explanation: "Sekolah adalah tempat berlangsung kegiatan belajar mengajar."
+      },
+      // 45
+      {
+        topic: "Sekolahku",
+        question: "Salah satu manfaat bersekolah adalah...",
+        options: [
+          "Tidak perlu belajar",
+          "Bisa menulis, membaca, dan menghitung",
+          "Selalu dapat hadiah",
+          "Tidak punya teman"
+        ],
+        correctIndex: 1,
+        explanation: "Di sekolah kita belajar menulis, membaca, menghitung, dan banyak ilmu lainnya."
+      },
+      // 46
+      {
+        topic: "Sekolahku",
+        question: "Ruangan yang digunakan untuk membaca dan meminjam buku di sekolah adalah...",
+        options: ["Ruang guru", "Perpustakaan", "Toilet", "Kantin"],
+        correctIndex: 1,
+        explanation: "Perpustakaan adalah ruangan di sekolah tempat membaca dan meminjam buku."
+      },
+      // 47
+      {
+        topic: "Sekolahku",
+        question: "Yang termasuk warga sekolah adalah...",
+        options: [
+          "Kepala sekolah, guru, siswa, karyawan tata usaha, petugas kebersihan, dan petugas keamanan",
+          "Hanya siswa saja",
+          "Hanya guru dan kepala sekolah",
+          "Hanya petugas keamanan"
+        ],
+        correctIndex: 0,
+        explanation: "Warga sekolah terdiri dari kepala sekolah, guru, siswa, karyawan tata usaha, petugas kebersihan, dan petugas keamanan."
+      },
+      // 48
+      {
+        topic: "Sekolahku",
+        question: "Kita dapat bersyukur kepada Allah atas sekolah dengan cara...",
+        options: [
+          "Tidak mau belajar",
+          "Merusak fasilitas sekolah",
+          "Rajin belajar, menyayangi teman, dan hormat kepada guru serta petugas sekolah",
+          "Berteriak di kelas"
+        ],
+        correctIndex: 2,
+        explanation: "Bersyukur kepada Allah dengan rajin belajar, menyayangi teman, dan menghormati guru serta petugas sekolah."
+      },
+      // 49
+      {
+        topic: "Sekolahku",
+        question: "Ruangan di sekolah yang digunakan untuk pertolongan pertama dan kesehatan siswa adalah...",
+        options: ["Ruang UKS", "Ruang kelas", "Ruang tata usaha", "Kantin"],
+        correctIndex: 0,
+        explanation: "Ruang UKS digunakan untuk menangani kesehatan siswa di sekolah."
+      },
+      // 50
+      {
+        topic: "Sekolahku",
+        question: "Kitab yang berisi ajaran tentang 'Nasihat untuk mencari hikmat' yang dipelajari adalah...",
+        options: ["Mazmur 23", "Kejadian 1", "Amsal 4:10-15", "Yohanes 3:16"],
+        correctIndex: 2,
+        explanation: "Ajaran tentang 'Nasihat untuk mencari hikmat' terdapat dalam kitab Amsal 4:10-15."
+      },
+      // 51
+      {
+        topic: "Sekolahku – Hikmat",
+        question: "Apa arti kata 'nasihat'?",
+        options: [
+          "Cerita lucu",
+          "Ajaran baik",
+          "Perintah marah-marah",
+          "Permainan baru"
+        ],
+        correctIndex: 1,
+        explanation: "Nasihat artinya ajaran baik yang menuntun kita ke jalan yang benar."
+      },
+      // 52
+      {
+        topic: "Sekolahku – Hikmat",
+        question: "Apa arti kata 'hikmat' menurut catatan pelajaran?",
+        options: [
+          "Kekuatan tubuh",
+          "Kepandaian untuk memilih yang baik",
+          "Kelemahan hati",
+          "Kekayaan harta"
+        ],
+        correctIndex: 1,
+        explanation: "Hikmat artinya kepandaian untuk memilih yang baik, bukan hanya pandai secara pelajaran."
+      },
+      // 53
+      {
+        topic: "Sekolahku – Hikmat",
+        question: "Dalam Amsal 4:10-15, kita diajak untuk...",
+        options: [
+          "Mengabaikan orang tua",
+          "Mendengarkan nasihat orang tua dan guru",
+          "Berbuat semaunya sendiri",
+          "Tidak mau taat aturan"
+        ],
+        correctIndex: 1,
+        explanation: "Amsal 4:10-15 mengajak kita mendengarkan nasihat orang tua dan guru."
+      },
+      // 54
+      {
+        topic: "Sekolahku – Hikmat",
+        question: "Salah satu ajakan dalam Amsal 4:10-15 adalah...",
+        options: [
+          "Pilih yang baik, jangan nakal",
+          "Selalu membantah",
+          "Membuat keributan",
+          "Tidak mau belajar"
+        ],
+        correctIndex: 0,
+        explanation: "Amsal 4:10-15 mengajak kita memilih yang baik dan tidak berlaku nakal."
+      },
+      // 55
+      {
+        topic: "Sekolahku – Hikmat",
+        question: "Mengikuti jalan Tuhan akan membuat hidup kita...",
+        options: [
+          "Sedih terus",
+          "Bahagia",
+          "Berantakan",
+          "Jauh dari damai"
+        ],
+        correctIndex: 1,
+        explanation: "Mengikuti jalan Tuhan membawa kita pada hidup yang bahagia dan penuh damai."
+      },
+      // 56
+      {
+        topic: "Rumahku",
+        question: "Contoh sikap yang menunjukkan rumah sebagai tempat saling menyayangi adalah...",
+        options: [
+          "Merebut mainan adik",
+          "Membantu orang tua dan tidak memukul saudara",
+          "Berteriak marah setiap hari",
+          "Tidak mau menyapa anggota keluarga"
+        ],
+        correctIndex: 1,
+        explanation: "Membantu orang tua dan tidak menyakiti saudara menunjukkan bahwa kita saling menyayangi di rumah."
+      },
+      // 57
+      {
+        topic: "Sekolahku",
+        question: "Mengapa kita harus menghormati petugas kebersihan di sekolah?",
+        options: [
+          "Karena mereka lucu",
+          "Karena mereka bukan warga sekolah",
+          "Karena mereka membantu menjaga kebersihan sehingga sekolah nyaman dan sehat",
+          "Karena ingin dimarahi"
+        ],
+        correctIndex: 2,
+        explanation: "Petugas kebersihan adalah bagian dari warga sekolah yang berjasa menjaga lingkungan tetap bersih dan nyaman."
+      },
+      // 58
+      {
+        topic: "Sekolahku",
+        question: "Kantin di sekolah biasanya digunakan untuk...",
+        options: [
+          "Bermain bola",
+          "Tempat makan dan membeli makanan",
+          "Tempat tidur guru",
+          "Tempat menyimpan buku pelajaran"
+        ],
+        correctIndex: 1,
+        explanation: "Kantin adalah tempat siswa dan guru membeli makanan dan minuman."
+      },
+      // 59
+      {
+        topic: "Rumahku",
+        question: "Mengapa rumah perlu memiliki ventilasi udara?",
+        options: [
+          "Agar rumah semakin pengap",
+          "Supaya udara dapat masuk dan keluar sehingga rumah sehat",
+          "Supaya banyak debu masuk",
+          "Supaya rumah selalu gelap"
+        ],
+        correctIndex: 1,
+        explanation: "Ventilasi membuat udara berganti dengan baik sehingga rumah menjadi lebih sehat dan tidak pengap."
+      },
+      // 60
+      {
+        topic: "Allah Menciptakan Langit dan Bumi",
+        question: "Cara sederhana anak sekolah dasar ikut menjaga ciptaan Allah adalah...",
+        options: [
+          "Membuang sampah di jalan",
+          "Menginjak tanaman di taman",
+          "Membuang sampah pada tempatnya dan hemat air",
+          "Merusak fasilitas umum"
+        ],
+        correctIndex: 2,
+        explanation: "Anak SD dapat menjaga ciptaan Allah dengan membuang sampah pada tempatnya, hemat air, dan tidak merusak lingkungan."
       }
     ];
 
@@ -1024,20 +1177,20 @@
     // PESAN PENYEMANGAT
     // ==============================
     const correctMessages = [
-      "Hebat! Jawabanmu tepat sekali! 🌟",
-      "Keren! Kamu paham tentang aturan! 💪",
-      "Luar biasa! Teruskan semangat belajarmu! 😍",
-      "Mantap! Sikap tertibmu pasti membawa kebaikan! 🙌",
-      "Bagus sekali! Kamu calon warga negara yang baik! 🇮🇩",
-      "Super! Jawabanmu menunjukkan kamu menghargai aturan! 🎉"
+      "Luar biasa! Jawabanmu tepat sekali! 🌟",
+      "Keren! Kamu benar, lanjut semangat ya! 💪",
+      "Hebat! Kamu memperhatikan pelajaran dengan baik! 😍",
+      "Mantap! Tuhan senang ketika kamu mau belajar sungguh-sungguh! 🙏",
+      "Bagus sekali! Teruskan semangat belajarmu! 🚀",
+      "Super! Kamu menjawab dengan sangat tepat! 🎉"
     ];
 
     const incorrectMessages = [
-      "Belum tepat, tapi jangan menyerah. Baca lagi pembahasannya ya! 🌈",
-      "Tidak apa-apa salah, namanya juga belajar. Ayo coba pahami lagi! 💡",
-      "Masih kurang tepat, tapi semangatmu belajar jauh lebih penting! 💖",
-      "Ups, belum benar. Yuk belajar dari penjelasannya supaya makin paham! 📘",
-      "Tenang, salah itu wajar. Yang penting mau belajar lagi! 🙏",
+      "Belum tepat, tapi jangan menyerah ya! Kamu pasti bisa! 🌈",
+      "Tidak apa-apa salah, namanya juga belajar. Coba perhatikan pembahasan ya! 💡",
+      "Masih kurang tepat, tapi semangatmu jauh lebih penting! 💖",
+      "Ups, belum benar. Yuk belajar dari penjelasannya! 📘",
+      "Tenang, salah itu wajar. Tuhan tetap sayang kamu kok! 🙏",
       "Belum pas, tapi kamu sudah berani mencoba. Itu luar biasa! 💪"
     ];
 
@@ -1053,6 +1206,7 @@
     const totalNumberEl = document.getElementById("totalNumber");
     const miniCounterEl = document.getElementById("miniCounter");
     const progressFillEl = document.getElementById("progressFill");
+    const topicTagEl = document.getElementById("topicTag");
     const topicTextEl = document.getElementById("topicText");
     const questionTextEl = document.getElementById("questionText");
     const optionsListEl = document.getElementById("optionsList");
@@ -1070,6 +1224,14 @@
     totalNumberEl.textContent = totalQuestions;
     resultTotalEl.textContent = totalQuestions;
 
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
     function showQuestion() {
       questionLocked = false;
       feedbackAreaEl.innerHTML = "";
@@ -1082,7 +1244,7 @@
       questionTextEl.textContent = q.question;
       currentScoreEl.textContent = score;
 
-      const progressPercent = (currentIndex / totalQuestions) * 100;
+      const progressPercent = ((currentIndex) / totalQuestions) * 100;
       progressFillEl.style.width = progressPercent + "%";
 
       optionsListEl.innerHTML = "";
@@ -1137,6 +1299,7 @@
 
       showFeedback(isCorrect, q.explanation);
 
+      // Pindah otomatis ke soal berikutnya
       setTimeout(() => {
         currentIndex++;
         if (currentIndex < totalQuestions) {
@@ -1189,19 +1352,19 @@
       if (percent === 100) {
         icon = "👑";
         title = "Sempurna! Kamu juara hari ini!";
-        note = "Kamu menjawab semua dengan benar. Teruslah menjadi anak yang taat aturan! ✨";
+        note = "Kamu menjawab semua dengan benar. Teruslah rajin belajar dan setia kepada Tuhan! ✨";
       } else if (percent >= 80) {
         icon = "🌟";
         title = "Hebat! Nilaimu sangat bagus!";
-        note = "Sedikit lagi kamu bisa sempurna. Pertahankan sikap tertib dan rajinmu!";
+        note = "Sedikit lagi kamu bisa sempurna. Pertahankan semangat belajarmu!";
       } else if (percent >= 60) {
         icon = "😊";
         title = "Lumayan! Masih bisa ditingkatkan!";
-        note = "Kamu sudah berusaha dengan baik. Yuk, baca lagi catatan PPKn dan coba lagi!";
+        note = "Kamu sudah berusaha dengan baik. Yuk, baca lagi catatan dan coba lagi!";
       } else {
         icon = "🌱";
         title = "Semangat! Jangan putus asa!";
-        note = "Nilai belum tinggi, tapi ini langkah awal yang baik. Terus belajar tentang aturan ya!";
+        note = "Nilai belum tinggi, tapi ini adalah langkah awal yang baik. Teruslah belajar!";
       }
 
       resultIconEl.textContent = icon;
