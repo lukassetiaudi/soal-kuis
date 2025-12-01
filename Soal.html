@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kuis Bahasa Indonesia Bab 3 & 4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ====== GLOBAL STYLE & GRADIENT ====== */
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #a855f7, #ec4899, #38bdf8);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .quiz-wrapper {
+      width: 95%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 24px;
+      padding: 20px 24px 26px;
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.25);
+      backdrop-filter: blur(6px);
+    }
+
+    @media (max-width: 768px) {
+      .quiz-wrapper {
+        padding: 16px 14px 20px;
+        border-radius: 18px;
+      }
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .title-area {
+      flex: 1;
+    }
+
+    .title-area h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #1f2933;
+    }
+
+    .title-area p {
+      margin: 4px 0 0;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .icon-bounce {
+      font-size: 2.4rem;
+      animation: floatIcon 2.8s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .stage-strip {
+      margin-top: 10px;
+      height: 26px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0ea5e9, #ec4899, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #f9fafb;
+      font-size: 0.78rem;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage-strip::before {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -20%;
+      width: 40%;
+      height: 220%;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.9),
+        transparent 60%
+      );
+      opacity: 0.4;
+      animation: spotlightMove 6s linear infinite;
+    }
+
+    @keyframes spotlightMove {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(220%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .stage-strip span {
+      white-space: nowrap;
+    }
+
+    /* ====== BUTTONS ====== */
+    .btn {
+      border: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      box-shadow: 0 10px 20px rgba(148, 51, 234, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 14px 26px rgba(148, 51, 234, 0.45);
+    }
+
+    .btn-outline {
+      background: white;
+      color: #7c3aed;
+      border: 1px solid rgba(148, 51, 234, 0.5);
+    }
+
+    .btn-outline:hover {
+      background: rgba(148, 51, 234, 0.04);
+      transform: translateY(-1px);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+
+    /* ====== MENU SCREEN ====== */
+    #menu-screen {
+      text-align: center;
+      padding: 10px 6px 2px;
+    }
+
+    .menu-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+    }
+
+    .menu-note {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    /* ====== QUIZ SCREEN ====== */
+    #quiz-screen {
+      display: none;
+    }
+
+    .quiz-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-mode {
+      background: rgba(129, 140, 248, 0.18);
+      color: #4338ca;
+    }
+
+    .badge-progress {
+      background: rgba(251, 113, 133, 0.18);
+      color: #be123c;
+    }
+
+    .badge-score {
+      background: rgba(45, 212, 191, 0.16);
+      color: #0f766e;
+    }
+
+    .question-card {
+      background: #f9fafb;
+      border-radius: 18px;
+      padding: 14px 14px 16px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-icon-bg {
+      position: absolute;
+      right: -8px;
+      top: -10px;
+      font-size: 3rem;
+      opacity: 0.08;
+      pointer-events: none;
+      animation: spinIcon 10s linear infinite;
+    }
+
+    @keyframes spinIcon {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ====== STORY BOX (opsional) ====== */
+    .story-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: #1e3a8a;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .story-box strong {
+      color: #1d4ed8;
+    }
+
+    .question-text {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #111827;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ====== OPTIONS ====== */
+    .options-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      border-radius: 999px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      background: white;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .option-btn span.option-label {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(129, 140, 248, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #4338ca;
+      flex-shrink: 0;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 14px rgba(148, 163, 184, 0.35);
+      border-color: rgba(129, 140, 248, 0.8);
+      background: linear-gradient(
+        135deg,
+        rgba(236, 72, 153, 0.06),
+        rgba(56, 189, 248, 0.04)
+      );
+    }
+
+    .option-btn.disabled {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    /* ====== SHORT ANSWER ====== */
+    .short-input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .short-input-area input,
+    .short-input-area textarea {
+      border-radius: 16px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+      resize: vertical;
+    }
+
+    .short-input-area input:focus,
+    .short-input-area textarea:focus {
+      border-color: #ec4899;
+      box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.25);
+    }
+
+    .short-input-area small {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    /* ====== FEEDBACK ====== */
+    #feedback {
+      margin-top: 12px;
+      min-height: 40px;
+      font-size: 0.9rem;
+    }
+
+    .feedback-box {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 16px;
+      animation: popIn 0.2s ease-out;
+    }
+
+    .feedback-box.correct {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(22, 163, 74, 0.6);
+      color: #166534;
+    }
+
+    .feedback-box.wrong {
+      background: rgba(248, 113, 113, 0.12);
+      border: 1px solid rgba(220, 38, 38, 0.65);
+      color: #b91c1c;
+    }
+
+    .feedback-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .feedback-text strong {
+      display: block;
+    }
+
+    .explanation {
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: #374151;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ====== FOOTER NAVBAR ====== */
+    .quiz-footer {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 7px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #a855f7, #ec4899, #38bdf8);
+      transition: width 0.25s ease;
+    }
+
+    /* ====== RESULT ====== */
+    #result-screen {
+      display: none;
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    #result-screen h2 {
+      margin: 0 0 6px;
+    }
+
+    #result-screen p {
+      margin: 4px 0;
+      font-size: 0.92rem;
+      color: #4b5563;
+    }
+
+    .result-icon {
+      font-size: 3rem;
+      margin-bottom: 6px;
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .icon-bounce {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-wrapper">
+    <div class="header">
+      <div class="title-area">
+        <h1>📚 Kuis Bahasa Indonesia Bab 3 & 4</h1>
+        <p>
+          Latihan ide pokok, ringkasan, teks eksplanasi, dongeng, ungkapan, dan
+          tanggapan.
+        </p>
+        <div class="stage-strip">
+          <span>✨ Ayo asah kemampuan bahasa Indonesia-mu dengan seru! ✨</span>
+        </div>
+      </div>
+      <div class="icon-bounce">✏️💡</div>
+    </div>
+
+    <!-- ===== MENU SCREEN ===== -->
+    <div id="menu-screen">
+      <p>Pilih jenis latihan yang ingin dikerjakan terlebih dahulu.</p>
+      <div class="menu-buttons">
+        <button class="btn btn-primary" onclick="startQuiz('mc')">
+          🎯 Mulai Pilihan Ganda
+        </button>
+        <button class="btn btn-outline" onclick="startQuiz('short')">
+          ✍️ Mulai Isian Singkat
+        </button>
+        <button class="btn btn-outline" onclick="startQuiz('essay')">
+          📖 Mulai Esai
+        </button>
+      </div>
+      <p class="menu-note">
+        Setelah menjawab, soal akan berpindah otomatis. Kamu bisa kembali ke
+        menu kapan saja. Semangat! 💪
+      </p>
+    </div>
+
+    <!-- ===== QUIZ SCREEN ===== -->
+    <div id="quiz-screen">
+      <div class="quiz-header-bar">
+        <div>
+          <span class="badge badge-mode" id="mode-badge"
+            >Mode: Pilihan Ganda</span
+          >
+        </div>
+        <div>
+          <span class="badge badge-progress" id="badge-progress"
+            >Soal 1 / 50</span
+          >
+          <span class="badge badge-score" id="badge-score">Skor: 0</span>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="question-icon-bg">📖</div>
+
+        <!-- STORY BOX (opsional) -->
+        <div class="story-box" id="story-box" style="display: none;"></div>
+
+        <p class="question-text" id="question-text"></p>
+
+        <!-- Multiple Choice Options -->
+        <ul class="options-list" id="options-list"></ul>
+
+        <!-- Short Answer Input -->
+        <div
+          class="short-input-area"
+          id="short-answer-area"
+          style="display: none;"
+        >
+          <input
+            type="text"
+            id="short-input"
+            placeholder="Ketik jawaban singkat (1–3 kata) di sini..."
+          />
+          <small
+            >Gunakan huruf kecil semua, misalnya:
+            <strong>ide pokok</strong>, <strong>dongeng</strong>,
+            <strong>fabel</strong>.</small
+          >
+          <button class="btn btn-primary btn-sm" onclick="submitShortAnswer()">
+            Kirim Jawaban ✨
+          </button>
+        </div>
+
+        <!-- Essay Area -->
+        <div class="short-input-area" id="essay-area" style="display: none;">
+          <textarea
+            id="essay-input"
+            rows="4"
+            placeholder="Tulis jawaban esai di sini (minimal 2 kalimat)..."
+          ></textarea>
+          <small
+            >Jawaban esai tidak dinilai otomatis, tapi setelah dikirim kamu akan
+            melihat contoh jawaban. 😊</small
+          >
+          <button class="btn btn-primary btn-sm" onclick="submitEssay()">
+            Kirim Jawaban 📝
+          </button>
+        </div>
+
+        <div id="feedback"></div>
+      </div>
+
+      <div class="quiz-footer">
+        <button class="btn btn-outline btn-sm" onclick="backToMenu()">
+          ⬅️ Kembali ke Menu
+        </button>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span id="question-counter-label"></span>
+      </div>
+    </div>
+
+    <!-- ===== RESULT SCREEN ===== -->
+    <div id="result-screen">
+      <div class="result-icon" id="result-icon">🏆</div>
+      <h2 id="result-title">Keren!</h2>
+      <p id="result-detail"></p>
+      <p id="result-extra"></p>
+      <div style="margin-top: 10px;">
+        <button class="btn btn-primary" onclick="restartSameMode()">
+          🔁 Ulangi Mode Ini
+        </button>
+        <button class="btn btn-outline" onclick="backToMenuFromResult()">
+          🏠 Kembali ke Menu
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========= DATA SOAL PILIHAN GANDA (50) =========
+    const mcQuestions = [
+      // BAB 3: IDE POKOK & IDE PENDUKUNG
+      {
+        text: "1. Ide pokok adalah ....",
+        options: [
+          "judul cerita",
+          "inti atau gagasan utama paragraf",
+          "contoh dalam paragraf"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Ide pokok menjadi dasar penulisan dan inti dari suatu paragraf."
+      },
+      {
+        text: "2. Ide pendukung berfungsi untuk ....",
+        options: [
+          "mengulang ide pokok",
+          "menambahkan ilustrasi dan penjelasan ide pokok",
+          "mengisi halaman kosong"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Ide pendukung berisi informasi tambahan yang menjelaskan ide pokok."
+      },
+      {
+        text: "3. Di dalam paragraf, ide pokok biasanya terdapat pada ....",
+        options: ["judul buku", "kata pertama", "kalimat utama"],
+        correctIndex: 2,
+        explanation:
+          "Ide pokok biasanya terdapat dalam kalimat utama paragraf."
+      },
+      {
+        text: "4. Informasi tambahan dalam paragraf disebut ....",
+        options: ["ide pendukung", "amanat", "judul"],
+        correctIndex: 0,
+        explanation:
+          "Informasi tambahan yang menjelaskan inti paragraf disebut ide pendukung."
+      },
+      // WUJUD BENDA & PERUBAHANNYA
+      {
+        text: "5. Wujud benda dapat berupa padat, cair, dan ....",
+        options: ["beku", "gas", "dingin"],
+        correctIndex: 1,
+        explanation:
+          "Menurut catatan, wujud benda meliputi padat, cair, dan gas."
+      },
+      {
+        text: "6. Mencair adalah perubahan wujud dari ....",
+        options: [
+          "cair menjadi gas",
+          "padat menjadi cair",
+          "gas menjadi padat"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Mencair adalah perubahan wujud benda padat menjadi cair karena suhu tinggi."
+      },
+      {
+        text: "7. Contoh peristiwa mencair adalah ....",
+        options: [
+          "es batu meleleh",
+          "air mendidih",
+          "uap air menjadi embun"
+        ],
+        correctIndex: 0,
+        explanation: "Es batu yang meleleh adalah contoh peristiwa mencair."
+      },
+      {
+        text: "8. Suhu adalah ....",
+        options: [
+          "rasa di lidah",
+          "ukuran panas atau dingin",
+          "ukuran tinggi badan"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Suhu adalah ukuran panas atau dingin dari suatu benda atau tempat."
+      },
+      // MAKNA KATA & KATA SERAPAN
+      {
+        text: "9. Kata serapan adalah ....",
+        options: [
+          "kata yang salah tulis",
+          "kata bahasa Indonesia yang diambil dari bahasa lain",
+          "kata yang hanya ada di dongeng"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kata serapan adalah kata bahasa Indonesia yang berasal dari bahasa lain."
+      },
+      {
+        text: "10. Gerobak adalah ....",
+        options: [
+          "kendaraan beroda untuk mengangkut barang",
+          "alat menumbuk padi",
+          "anyaman bambu untuk menampi beras"
+        ],
+        correctIndex: 0,
+        explanation:
+          "Gerobak adalah kendaraan beroda untuk mengangkut barang atau orang."
+      },
+      {
+        text: "11. Alu digunakan untuk ....",
+        options: [
+          "menyapu lantai",
+          "menumbuk padi di lesung",
+          "mengaduk minuman"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Alu adalah tongkat kayu untuk menumbuk padi dalam lesung."
+      },
+      {
+        text: "12. Tampah digunakan untuk ....",
+        options: [
+          "menyimpan pakaian",
+          "menampih atau menjemur beras",
+          "mengukur suhu"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tampah adalah anyaman bambu berbentuk bundar untuk menampih beras."
+      },
+      // RINGKASAN & TEKS EKSPLANASI
+      {
+        text: "13. Ringkasan adalah ....",
+        options: [
+          "tulisan yang sangat panjang",
+          "penyajian teks secara singkat dan padat",
+          "judul dari sebuah teks"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Ringkasan adalah penyajian tulisan yang singkat dan efektif dari teks yang panjang."
+      },
+      {
+        text: "14. Langkah pertama saat meringkas teks adalah ....",
+        options: [
+          "mengganti semua kata",
+          "membaca teks dengan saksama",
+          "menghapus bagian akhir"
+        ],
+        correctIndex: 1,
+        explanation: "Kita perlu mencermati atau membaca teks dengan saksama."
+      },
+      {
+        text: "15. Teks eksplanasi digunakan untuk menjelaskan ....",
+        options: [
+          "perasaan tokoh",
+          "proses atau peristiwa di sekitar kita",
+          "dialog dalam cerita"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Teks eksplanasi menjelaskan proses atau peristiwa alam, sosial, atau ilmu pengetahuan."
+      },
+      {
+        text: "16. Teks eksplanasi sering menjawab pertanyaan ....",
+        options: [
+          "siapa dan di mana",
+          "apa dan kapan",
+          "mengapa dan bagaimana"
+        ],
+        correctIndex: 2,
+        explanation:
+          "Ciri teks eksplanasi adalah menjawab pertanyaan mengapa dan bagaimana."
+      },
+      {
+        text: "17. Ciri teks eksplanasi adalah ....",
+        options: [
+          "bersifat imajinatif",
+          "bersifat ilmiah dan informatif",
+          "berisi tokoh dan dialog"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Teks eksplanasi bersifat ilmiah dan informatif, berdasarkan fakta."
+      },
+      // KALIMAT EFEKTIF & INFORMASI DARI GAMBAR
+      {
+        text: "18. Kalimat efektif harus memiliki minimal ....",
+        options: ["subjek dan predikat", "judul dan tokoh", "latar dan alur"],
+        correctIndex: 0,
+        explanation:
+          "Kalimat efektif minimal memiliki subjek (S) dan predikat (P)."
+      },
+      {
+        text: "19. Menentukan informasi dari gambar dapat dilakukan dengan melihat ....",
+        options: [
+          "tokoh, kegiatan, tempat, dan suasana",
+          "warna baju saja",
+          "jumlah pohon saja"
+        ],
+        correctIndex: 0,
+        explanation:
+          "Informasi dari gambar dilihat dari tokoh, kegiatan, tempat/waktu, dan suasana."
+      },
+      {
+        text: "20. Saat membuat kalimat berdasarkan gambar, kalimat harus ....",
+        options: [
+          "panjang sekali",
+          "menggunakan kata yang berkaitan dengan gambar",
+          "mengabaikan tokoh di gambar"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Kalimat harus menggunakan kata yang berkaitan dengan gambar."
+      },
+
+      // BAB 4: DONGENG & JENISNYA
+      {
+        text: "21. Dongeng adalah ....",
+        options: [
+          "cerita yang selalu benar",
+          "cerita yang tidak benar-benar terjadi",
+          "catatan pelajaran"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Dongeng berasal dari imajinasi penulis dan tidak benar-benar terjadi."
+      },
+      {
+        text: "22. Dongeng yang tokoh utamanya hewan disebut ....",
+        options: ["legenda", "fabel", "hikayat"],
+        correctIndex: 1,
+        explanation:
+          "Fabel adalah dongeng dengan tokoh utama hewan yang berperilaku seperti manusia."
+      },
+      {
+        text: "23. Dongeng tentang asal-usul suatu tempat disebut ....",
+        options: ["mite", "legenda", "fabel"],
+        correctIndex: 1,
+        explanation: "Legenda menceritakan asal-usul tempat, benda, atau peristiwa."
+      },
+      {
+        text: "24. Dongeng yang berkaitan dengan istana dan pangeran disebut ....",
+        options: ["hikayat", "mite", "fabel"],
+        correctIndex: 0,
+        explanation:
+          "Hikayat menceritakan pangeran, putri, raja, ratu, atau orang bijak."
+      },
+      {
+        text: "25. Mite adalah cerita tentang ....",
+        options: [
+          "perjuangan pahlawan",
+          "kesaktian dan hal yang suci",
+          "asal-usul sungai"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Mite berhubungan dengan kesaktian, hal ajaib, atau dewa dan kayangan."
+      },
+
+      // UNSUR PEMBANGUN DONGENG
+      {
+        text: "26. Tema dalam dongeng adalah ....",
+        options: [
+          "nama tokoh",
+          "gagasan utama atau pokok pikiran cerita",
+          "jumlah halaman buku"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tema adalah gagasan utama atau pokok pikiran yang mendasari cerita."
+      },
+      {
+        text: "27. Tokoh utama dalam dongeng adalah ....",
+        options: [
+          "tokoh yang muncul sebentar",
+          "tokoh yang muncul dari awal sampai akhir cerita",
+          "nama pengarang"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tokoh utama biasanya muncul dari awal sampai akhir cerita."
+      },
+      {
+        text: "28. Penokohan adalah ....",
+        options: [
+          "judul buku",
+          "watak atau karakter tokoh",
+          "banyaknya bab"
+        ],
+        correctIndex: 1,
+        explanation: "Penokohan menjelaskan watak atau karakter tokoh dalam cerita."
+      },
+      {
+        text: "29. Latar tempat menjelaskan ....",
+        options: [
+          "kapan cerita terjadi",
+          "di mana peristiwa terjadi",
+          "siapa tokoh utama"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Latar tempat menggambarkan letak kejadian atau peristiwa yang terjadi."
+      },
+      {
+        text: "30. Latar suasana menggambarkan ....",
+        options: [
+          "jumlah tokoh",
+          "perasaan dan keadaan dalam cerita",
+          "judul cerita"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Latar suasana menjelaskan suasana sedih, senang, tegang, dan sebagainya."
+      },
+      {
+        text: "31. Alur adalah ....",
+        options: [
+          "urutan peristiwa dalam cerita",
+          "jumlah halaman buku",
+          "nama pengarang"
+        ],
+        correctIndex: 0,
+        explanation:
+          "Alur merupakan urutan peristiwa-peristiwa yang diceritakan."
+      },
+      {
+        text: "32. Tahap awal alur berisi ....",
+        options: [
+          "penyelesaian masalah",
+          "pengenalan tokoh dan peristiwa",
+          "puncak masalah"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tahap awal berisi pengenalan tokoh dan peristiwa yang terjadi."
+      },
+      {
+        text: "33. Tahap tengah alur berisi ....",
+        options: [
+          "judul dan pengarang",
+          "penjelasan masalah yang dialami tokoh",
+          "amanat cerita"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tahap tengah berisi permasalahan yang dialami tokoh cerita."
+      },
+      {
+        text: "34. Alur maju disajikan ....",
+        options: [
+          "dari akhir ke awal",
+          "melompat-lompat saja",
+          "sesuai urutan waktu dari awal ke akhir"
+        ],
+        correctIndex: 2,
+        explanation:
+          "Alur maju menceritakan peristiwa sesuai urutan waktu dari awal hingga akhir."
+      },
+      {
+        text: "35. Amanat dalam dongeng adalah ....",
+        options: [
+          "nama penulis",
+          "jumlah paragraf",
+          "pesan moral yang ingin disampaikan penulis"
+        ],
+        correctIndex: 2,
+        explanation:
+          "Amanat adalah pesan moral yang ingin disampaikan penulis melalui cerita."
+      },
+
+      // UNGKAPAN
+      {
+        text: "36. Ungkapan adalah ....",
+        options: [
+          "kelompok kata dengan arti sama persis",
+          "gabungan kata yang artinya berbeda dari arti kata asal",
+          "kalimat tanya saja"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Ungkapan (idiom) artinya berbeda dengan arti kata pembentuknya."
+      },
+      {
+        text: "37. Ungkapan 'bintang kelas' berarti ....",
+        options: [
+          "siswa yang suka melihat bintang",
+          "siswa yang sering melamun",
+          "siswa yang berprestasi"
+        ],
+        correctIndex: 2,
+        explanation: "Bintang kelas berarti siswa yang berprestasi."
+      },
+      {
+        text: "38. Ungkapan 'demam panggung' berarti ....",
+        options: [
+          "sakit karena pilek",
+          "gugup saat tampil di depan umum",
+          "suka menari di panggung"
+        ],
+        correctIndex: 1,
+        explanation: "Demam panggung berarti gugup ketika akan tampil di panggung."
+      },
+      {
+        text: "39. Ungkapan 'gulung tikar' berarti ....",
+        options: ["bangkrut", "membeli karpet", "menggulung kertas"],
+        correctIndex: 0,
+        explanation: "Gulung tikar berarti bangkrut atau usahanya tutup."
+      },
+      {
+        text: "40. Ungkapan 'rendah hati' berarti ....",
+        options: [
+          "selalu menunduk",
+          "tidak sombong",
+          "berjalan pelan-pelan"
+        ],
+        correctIndex: 1,
+        explanation: "Rendah hati berarti tidak sombong."
+      },
+
+      // TANGGAPAN & SARAN
+      {
+        text: "41. Tanggapan adalah ....",
+        options: [
+          "judul cerita",
+          "gagasan atau pendapat terhadap suatu hal",
+          "nama tokoh"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Tanggapan adalah gagasan atau ide yang disampaikan terhadap bacaan atau peristiwa."
+      },
+      {
+        text: "42. Kata yang sering digunakan dalam kalimat tanggapan adalah ....",
+        options: ["menurut saya", "sebaiknya", "besok pagi"],
+        correctIndex: 0,
+        explanation:
+          "Kalimat tanggapan biasanya memuat kata 'menurut saya'."
+      },
+      {
+        text: "43. Saran adalah ....",
+        options: [
+          "hukuman untuk teman",
+          "pendapat untuk dipertimbangkan",
+          "cerita lucu"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Saran adalah pendapat yang disampaikan untuk dipertimbangkan."
+      },
+      {
+        text: "44. Kata yang sering digunakan dalam kalimat saran adalah ....",
+        options: ["sebaiknya atau seharusnya", "kemarin sore", "mengetahui"],
+        correctIndex: 0,
+        explanation:
+          "Kalimat saran biasanya menggunakan kata 'sebaiknya' atau 'seharusnya'."
+      },
+      {
+        text: "45. Saat memberi tanggapan dan saran, bahasa yang digunakan harus ....",
+        options: ["kasar", "santai tapi tidak sopan", "santun dan sopan"],
+        correctIndex: 2,
+        explanation:
+          "Tanggapan dan saran harus disampaikan dengan bahasa yang santun."
+      },
+
+      // HURUF TEGAK BERSAMBUNG
+      {
+        text: "46. Huruf tegak bersambung adalah cara menulis huruf ....",
+        options: [
+          "dipisah semua",
+          "secara bersambung tanpa terputus",
+          "hanya dengan huruf besar"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Huruf tegak bersambung ditulis saling terhubung antara huruf yang satu dan lainnya."
+      },
+      {
+        text: "47. Manfaat belajar huruf tegak bersambung adalah ....",
+        options: [
+          "tulisan menjadi lebih cepat dan rapi",
+          "kertas cepat habis",
+          "pensil cepat pendek"
+        ],
+        correctIndex: 0,
+        explanation:
+          "Menulis tegak bersambung membuat tulisan lebih cepat dan dapat dilatih menjadi rapi."
+      },
+      {
+        text: "48. Saat menulis huruf tegak bersambung, kita harus memperhatikan ....",
+        options: [
+          "posisi badan, cara memegang pensil, dan kemiringan tulisan",
+          "warna baju",
+          "ukuran sepatu"
+        ],
+        correctIndex: 0,
+        explanation:
+          "Menulis tegak bersambung juga memerlukan posisi badan yang baik dan cara memegang pensil yang benar."
+      },
+      // RINGKASAN PERILAKU DARI PERMASALAHAN HANI
+      {
+        text: "49. Hani lupa membawa alat tulis ke sekolah. Tanggapan yang tepat adalah ....",
+        options: [
+          "Hani memang malas ke sekolah",
+          "Hani kurang teliti menyiapkan alat tulis",
+          "Hani tidak perlu belajar"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Contoh tanggapan: Hani kurang teliti sehingga lupa membawa alat tulis ke sekolah."
+      },
+      {
+        text: "50. Saran yang tepat untuk Hani agar tidak lupa alat tulis adalah ....",
+        options: [
+          "sebaiknya Hani tidak usah membawa tas",
+          "sebaiknya Hani menyimpan alat tulis di tas sejak malam",
+          "sebaiknya Hani bangun siang"
+        ],
+        correctIndex: 1,
+        explanation:
+          "Sebaiknya Hani langsung menyimpan alat tulis di tas sekolah sejak malam."
+      }
+    ];
+
+    // ========= DATA SOAL ISIAN SINGKAT (20) =========
+    const shortQuestions = [
+      {
+        text: "1. Istilah untuk inti atau gagasan utama paragraf adalah ....",
+        answers: ["ide pokok"],
+        explanation: "Inti paragraf disebut ide pokok."
+      },
+      {
+        text: "2. Informasi tambahan yang menjelaskan ide pokok disebut ide ....",
+        answers: ["pendukung"],
+        explanation: "Informasi tambahan disebut ide pendukung."
+      },
+      {
+        text: "3. Perubahan wujud padat menjadi cair karena panas disebut ....",
+        answers: ["mencair"],
+        explanation: "Perubahan padat menjadi cair disebut mencair."
+      },
+      {
+        text: "4. Wujud benda meliputi padat, cair, dan ....",
+        answers: ["gas"],
+        explanation: "Tiga wujud benda utama adalah padat, cair, dan gas."
+      },
+      {
+        text: "5. Kata 'gerobak' termasuk kata .... (serapan/kiasan)",
+        answers: ["serapan", "kata serapan"],
+        explanation: "Gerobak adalah contoh kata serapan dari bahasa daerah."
+      },
+      {
+        text: "6. Penyajian teks dalam bentuk yang lebih singkat dan padat disebut ....",
+        answers: ["ringkasan"],
+        explanation: "Ringkasan adalah bentuk singkat dari teks yang panjang."
+      },
+      {
+        text: "7. Teks yang menjelaskan proses peristiwa alam atau ilmu pengetahuan disebut teks ....",
+        answers: ["eksplanasi", "teks eksplanasi"],
+        explanation: "Teks eksplanasi menjelaskan proses atau peristiwa."
+      },
+      {
+        text: "8. Kalimat yang memiliki subjek dan predikat dengan jelas disebut kalimat ....",
+        answers: ["efektif", "kalimat efektif"],
+        explanation: "Kalimat efektif memiliki unsur S dan P dengan jelas."
+      },
+      {
+        text: "9. Kelompok kata yang artinya berbeda dari arti kata asal disebut ....",
+        answers: ["ungkapan", "idiom"],
+        explanation: "Ungkapan atau idiom mempunyai makna kias."
+      },
+      {
+        text: "10. Ungkapan untuk siswa berprestasi di kelas adalah ....",
+        answers: ["bintang kelas"],
+        explanation: "Siswa berprestasi sering disebut bintang kelas."
+      },
+      {
+        text: "11. Cerita yang tokoh utamanya hewan dan mengandung pesan moral disebut ....",
+        answers: ["fabel"],
+        explanation: "Fabel adalah dongeng yang tokohnya hewan."
+      },
+      {
+        text: "12. Cerita tentang asal-usul suatu tempat disebut ....",
+        answers: ["legenda"],
+        explanation: "Legenda adalah cerita asal-usul tempat atau peristiwa."
+      },
+      {
+        text: "13. Pesan moral yang ingin disampaikan penulis melalui dongeng disebut ....",
+        answers: ["amanat"],
+        explanation: "Amanat adalah pesan yang ingin disampaikan penulis."
+      },
+      {
+        text: "14. Gagasan utama dalam dongeng yang menjadi dasar cerita disebut ....",
+        answers: ["tema"],
+        explanation: "Tema adalah gagasan utama cerita."
+      },
+      {
+        text: "15. Tokoh dalam cerita yang muncul dari awal sampai akhir disebut tokoh ....",
+        answers: ["utama", "tokoh utama"],
+        explanation: "Tokoh utama muncul sepanjang cerita."
+      },
+      {
+        text: "16. Kata yang biasa digunakan dalam kalimat tanggapan adalah .... (dua kata)",
+        answers: ["menurut saya"],
+        explanation: "Kalimat tanggapan biasanya memuat kata 'menurut saya'."
+      },
+      {
+        text: "17. Kata yang biasa digunakan dalam kalimat saran adalah .... (misalnya satu kata)",
+        answers: ["sebaiknya", "seharusnya"],
+        explanation: "Kalimat saran memakai kata sebaiknya atau seharusnya."
+      },
+      {
+        text: "18. Suasana sedih, senang, atau tegang dalam cerita termasuk latar ....",
+        answers: ["suasana", "latar suasana"],
+        explanation: "Latar suasana menunjukkan rasa dan keadaan dalam cerita."
+      },
+      {
+        text: "19. Urutan peristiwa dalam cerita disebut ....",
+        answers: ["alur"],
+        explanation: "Alur adalah urutan peristiwa yang diceritakan."
+      },
+      {
+        text: "20. Cara menulis huruf secara bersambung tanpa terputus disebut huruf ....",
+        answers: ["tegak bersambung", "huruf tegak bersambung"],
+        explanation: "Huruf tegak bersambung ditulis saling terhubung."
+      }
+    ];
+
+    // ========= DATA SOAL ESAI (10) =========
+    const essayQuestions = [
+      {
+        text:
+          "1. Tuliskan satu paragraf pendek (3–4 kalimat) yang menjelaskan apa itu ide pokok dan ide pendukung serta contohnya!",
+        sample:
+          "Ide pokok adalah gagasan utama dalam paragraf. Ide pendukung adalah kalimat yang menjelaskan ide pokok. Contohnya, ide pokoknya tentang menjaga kebersihan lingkungan, sedangkan ide pendukung menjelaskan cara membuang sampah pada tempatnya, membersihkan selokan, dan menanam pohon."
+      },
+      {
+        text:
+          "2. Buatlah satu contoh ringkasan dari kegiatan favoritmu di sekolah dalam 3–4 kalimat!",
+        sample:
+          "Kegiatan favorit saya di sekolah adalah membaca di perpustakaan. Setiap hari Rabu, saya dan teman-teman pergi ke perpustakaan untuk memilih buku. Kami membaca dengan tenang lalu menceritakan isi buku secara singkat. Dari kegiatan itu, saya menjadi suka membaca."
+      },
+      {
+        text:
+          "3. Tuliskan satu contoh teks eksplanasi singkat (3–4 kalimat) tentang proses mencairnya es batu!",
+        sample:
+          "Es batu dapat berubah menjadi air ketika diletakkan di tempat yang hangat. Suhu yang tinggi membuat es batu mencair. Es yang semula padat perlahan-lahan menjadi cairan bening. Proses perubahan dari padat menjadi cair ini disebut mencair."
+      },
+      {
+        text:
+          "4. Buatlah satu paragraf yang berisi tanggapan dan saran terhadap teman yang sering datang terlambat ke sekolah!",
+        sample:
+          \"Menurut saya, teman yang sering datang terlambat ke sekolah kurang disiplin waktu. Sebaiknya ia tidur lebih awal dan menyiapkan perlengkapan sekolah pada malam hari. Ia juga perlu berangkat lebih cepat agar tidak terkena macet. Dengan begitu ia bisa datang tepat waktu dan mengikuti pelajaran sejak awal.\"
+      },
+      {
+        text:
+          "5. Tuliskan contoh dongeng singkat (3–5 kalimat) dengan tokoh hewan yang mengandung amanat jangan sombong!",
+        sample:
+          "Suatu hari, seekor kelinci sombong menantang kura-kura untuk lomba lari. Kelinci merasa pasti menang sehingga ia berhenti dan tertidur di pinggir jalan. Sementara itu, kura-kura berjalan pelan tetapi tidak pernah berhenti. Akhirnya kura-kura sampai di garis akhir lebih dulu. Amanatnya, kita tidak boleh sombong dan meremehkan orang lain."
+      },
+      {
+        text:
+          "6. Jelaskan dengan kalimatmu sendiri apa yang dimaksud dengan ungkapan dan berikan 2 contoh ungkapan beserta artinya!",
+        sample:
+          "Ungkapan adalah gabungan kata yang maknanya tidak sama dengan arti kata-kata pembentuknya. Contohnya, 'bintang kelas' artinya siswa berprestasi. Contoh lain, 'buah bibir' artinya menjadi bahan pembicaraan banyak orang."
+      },
+      {
+        text:
+          "7. Tuliskan satu paragraf tentang pentingnya menggunakan bahasa yang santun ketika memberi tanggapan di kelas!",
+        sample:
+          "Bahasa yang santun sangat penting ketika memberi tanggapan di kelas. Dengan bahasa yang sopan, teman tidak akan merasa disalahkan atau diremehkan. Guru juga akan merasa senang karena suasana kelas tetap tertib dan nyaman. Selain itu, kita belajar menghargai pendapat orang lain."
+      },
+      {
+        text:
+          "8. Buatlah satu paragraf yang menjelaskan perbedaan fabel dan legenda serta masing-masing satu contohnya!",
+        sample:
+          "Fabel adalah dongeng yang tokohnya hewan, misalnya cerita 'Si Kancil'. Legenda adalah cerita tentang asal-usul suatu tempat, misalnya 'Malin Kundang'. Fabel lebih menonjolkan perilaku hewan yang seperti manusia, sedangkan legenda menjelaskan bagaimana suatu tempat terbentuk. Keduanya sama-sama mengandung amanat untuk pembaca."
+      },
+      {
+        text:
+          "9. Tuliskan contoh kalimat efektif yang memiliki unsur S, P, O, dan K tentang kegiatan di rumahmu!",
+        sample:
+          "Contoh kalimat efektif: 'Adi (S) menyapu (P) halaman rumah (O) setiap pagi (K)'. Kalimat itu memiliki subjek, predikat, objek, dan keterangan yang jelas."
+      },
+      {
+        text:
+          "10. Buatlah sebuah paragraf (3–4 kalimat) berdasarkan gambar imajinasimu ketika Cici menyimpan minuman di kulkas lalu minuman itu membeku!",
+        sample:
+          "Cici menyimpan minuman cokelat di dalam kulkas pada malam hari. Keesokan paginya, minuman itu berubah menjadi es yang keras. Cici merasa senang karena minuman dingin itu sangat segar. Peristiwa itu terjadi karena minuman yang semula cair mengalami perubahan wujud menjadi padat."
+      }
+    ];
+
+    // ========= STATE =========
+    let currentMode = null; // 'mc', 'short', atau 'essay'
+    let currentIndex = 0;
+    let scoreMc = 0;
+    let scoreShort = 0;
+
+    const positiveMessages = [
+      "Keren! Teruskan semangatmu! 💪",
+      "Hebat! Kamu sangat teliti! 🌟",
+      "Jawabanmu tepat, luar biasa! 🎉",
+      "Mantap! Kamu sudah mengerti materinya! ✅",
+      "Super! Tetap fokus seperti ini ya! ✨"
+    ];
+
+    const negativeMessages = [
+      "Belum tepat, tapi jangan menyerah ya! 💜",
+      "Tidak apa-apa, dari salah kita belajar! 🌱",
+      "Masih salah, coba perhatikan lagi penjelasannya ya. 📖",
+      "Belajar itu proses, kamu pasti bisa! 💪",
+      "Ayo semangat! Baca pembahasan, lalu lanjut lagi. 🔍"
+    ];
+
+    function getRandomMessage(isCorrect) {
+      const arr = isCorrect ? positiveMessages : negativeMessages;
+      const idx = Math.floor(Math.random() * arr.length);
+      return arr[idx];
+    }
+
+    // ========= UI HELPERS =========
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    function showElement(id) {
+      $(id).style.display = "block";
+    }
+
+    function hideElement(id) {
+      $(id).style.display = "none";
+    }
+
+    function updateProgress() {
+      let total;
+      if (currentMode === "mc") {
+        total = mcQuestions.length;
+      } else if (currentMode === "short") {
+        total = shortQuestions.length;
+      } else {
+        total = essayQuestions.length;
+      }
+
+      const currentNo = currentIndex + 1;
+      const percent = (currentNo / total) * 100;
+      $("progress-fill").style.width = percent + "%";
+      $("badge-progress").textContent = `Soal ${currentNo} / ${total}`;
+      $("question-counter-label").textContent = `Soal ${currentNo} dari ${total}`;
+
+      if (currentMode === "mc") {
+        $("badge-score").textContent = `Skor: ${scoreMc}`;
+      } else if (currentMode === "short") {
+        $("badge-score").textContent = `Skor: ${scoreShort}`;
+      } else {
+        $("badge-score").textContent = "Skor: - (esai)";
+      }
+    }
+
+    function resetFeedback() {
+      $("feedback").innerHTML = "";
+    }
+
+    // ========= START & NAVIGATION =========
+    function startQuiz(mode) {
+      currentMode = mode;
+      currentIndex = 0;
+      resetFeedback();
+      if ($("short-input")) $("short-input").value = "";
+      if ($("essay-input")) $("essay-input").value = "";
+
+      if (mode === "mc") {
+        $("mode-badge").textContent = "Mode: Pilihan Ganda";
+        $("options-list").style.display = "flex";
+        $("short-answer-area").style.display = "none";
+        $("essay-area").style.display = "none";
+        showMcQuestion();
+      } else if (mode === "short") {
+        $("mode-badge").textContent = "Mode: Isian Singkat";
+        $("options-list").style.display = "none";
+        $("short-answer-area").style.display = "flex";
+        $("essay-area").style.display = "none";
+        showShortQuestion();
+      } else {
+        $("mode-badge").textContent = "Mode: Esai";
+        $("options-list").style.display = "none";
+        $("short-answer-area").style.display = "none";
+        $("essay-area").style.display = "flex";
+        showEssayQuestion();
+      }
+
+      hideElement("menu-screen");
+      hideElement("result-screen");
+      showElement("quiz-screen");
+      updateProgress();
+    }
+
+    function backToMenu() {
+      hideElement("quiz-screen");
+      hideElement("result-screen");
+      showElement("menu-screen");
+    }
+
+    function backToMenuFromResult() {
+      hideElement("result-screen");
+      showElement("menu-screen");
+    }
+
+    function restartSameMode() {
+      if (!currentMode) return;
+      if (currentMode === "mc") {
+        scoreMc = 0;
+      } else if (currentMode === "short") {
+        scoreShort = 0;
+      }
+      startQuiz(currentMode);
+    }
+
+    // ========= UTILITY: SHUFFLE ARRAY =========
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // ========= TAMPILKAN SOAL PILIHAN GANDA =========
+    function showMcQuestion() {
+      const q = mcQuestions[currentIndex];
+      $("question-text").textContent = q.text;
+      const list = $("options-list");
+      list.innerHTML = "";
+      resetFeedback();
+      if ($("short-input")) $("short-input").value = "";
+      if ($("essay-input")) $("essay-input").value = "";
+
+      const storyBox = $("story-box");
+      if (q.story) {
+        storyBox.style.display = "block";
+        storyBox.innerHTML = q.story;
+      } else {
+        storyBox.style.display = "none";
+        storyBox.innerHTML = "";
+      }
+
+      const labels = ["a", "b", "c"];
+      const indices = shuffleArray([0, 1, 2]);
+
+      indices.forEach((optIndex, orderIdx) => {
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+
+        const isCorrect = optIndex === q.correctIndex;
+        btn.onclick = () => selectOption(isCorrect, q.explanation);
+
+        btn.innerHTML = `<span class="option-label">${labels[orderIdx]}</span><span>${q.options[optIndex]}</span>`;
+        li.appendChild(btn);
+        list.appendChild(li);
+      });
+
+      updateProgress();
+    }
+
+    function disableOptions() {
+      document.querySelectorAll(".option-btn").forEach((btn) => {
+        btn.classList.add("disabled");
+      });
+    }
+
+    function selectOption(isCorrect, explanation) {
+      if (isCorrect) {
+        scoreMc++;
+      }
+
+      disableOptions();
+      showFeedback(isCorrect, explanation);
+
+      const total = mcQuestions.length;
+      setTimeout(() => {
+        currentIndex++;
+        if (currentIndex >= total) {
+          showResult();
+        } else {
+          showMcQuestion();
+        }
+      }, 1900);
+    }
+
+    // ========= TAMPILKAN SOAL ISIAN SINGKAT =========
+    function showShortQuestion() {
+      const q = shortQuestions[currentIndex];
+      $("question-text").textContent = q.text;
+      if ($("short-input")) $("short-input").value = "";
+      if ($("essay-input")) $("essay-input").value = "";
+      resetFeedback();
+
+      const storyBox = $("story-box");
+      storyBox.style.display = "none";
+      storyBox.innerHTML = "";
+
+      updateProgress();
+    }
+
+    function submitShortAnswer() {
+      const q = shortQuestions[currentIndex];
+      const inputEl = $("short-input");
+      if (!inputEl) return;
+      const raw = inputEl.value.trim();
+      if (!raw) {
+        inputEl.focus();
+        return;
+      }
+      const user = raw.toLowerCase();
+
+      let isCorrect = false;
+      for (const ans of q.answers) {
+        const target = ans.toLowerCase();
+        if (user === target) {
+          isCorrect = true;
+          break;
+        }
+        const words = target.split(" ");
+        if (words.every((w) => user.includes(w))) {
+          isCorrect = true;
+          break;
+        }
+      }
+
+      if (isCorrect) {
+        scoreShort++;
+      }
+
+      showFeedback(isCorrect, q.explanation);
+
+      const total = shortQuestions.length;
+      setTimeout(() => {
+        currentIndex++;
+        if (currentIndex >= total) {
+          showResult();
+        } else {
+          showShortQuestion();
+        }
+      }, 1900);
+    }
+
+    // ========= TAMPILKAN SOAL ESAI =========
+    function showEssayQuestion() {
+      const q = essayQuestions[currentIndex];
+      $("question-text").textContent = q.text;
+      if ($("short-input")) $("short-input").value = "";
+      if ($("essay-input")) $("essay-input").value = "";
+      resetFeedback();
+
+      const storyBox = $("story-box");
+      storyBox.style.display = "none";
+      storyBox.innerHTML = "";
+
+      updateProgress();
+    }
+
+    function submitEssay() {
+      const q = essayQuestions[currentIndex];
+      const inputEl = $("essay-input");
+      if (!inputEl) return;
+      const raw = inputEl.value.trim();
+      if (!raw) {
+        inputEl.focus();
+        return;
+      }
+
+      // Esai tidak dinilai benar/salah, hanya menampilkan contoh jawaban
+      const explanationText = `Contoh jawaban: ${q.sample}`;
+      showFeedback(true, explanationText);
+
+      const total = essayQuestions.length;
+      setTimeout(() => {
+        currentIndex++;
+        if (currentIndex >= total) {
+          showResult();
+        } else {
+          showEssayQuestion();
+        }
+      }, 2200);
+    }
+
+    // ========= FEEDBACK =========
+    function showFeedback(isCorrect, explanationText) {
+      const msg = getRandomMessage(isCorrect);
+      const icon = isCorrect ? "🌟" : "💡";
+      const cls = isCorrect ? "correct" : "wrong";
+
+      let html = `
+        <div class="feedback-box ${cls}">
+          <div class="feedback-icon">${icon}</div>
+          <div class="feedback-text">
+            <strong>${msg}</strong>
+      `;
+
+      if (!isCorrect && explanationText) {
+        html += `<div class="explanation"><strong>Pembahasan:</strong> ${explanationText}</div>`;
+      } else if (isCorrect && explanationText) {
+        html += `<div class="explanation">${explanationText}</div>`;
+      }
+
+      html += `</div></div>`;
+      $("feedback").innerHTML = html;
+      updateProgress();
+    }
+
+    // ========= HASIL AKHIR =========
+    function showResult() {
+      hideElement("quiz-screen");
+      showElement("result-screen");
+
+      let title = "";
+      let extra = "";
+      let icon = "";
+
+      if (currentMode === "essay") {
+        const total = essayQuestions.length;
+        $("result-detail").textContent = `Kamu telah menjawab ${total} soal esai.`;
+        title = "Bagus! Kamu sudah berlatih menulis! ✍️";
+        icon = "📖";
+        extra =
+          "Jawaban esai tidak dinilai otomatis, tetapi latihan ini membantumu menjadi lebih terampil menulis.";
+      } else {
+        const total =
+          currentMode === "mc" ? mcQuestions.length : shortQuestions.length;
+        const score = currentMode === "mc" ? scoreMc : scoreShort;
+        const percent = Math.round((score / total) * 100);
+        $("result-detail").textContent = `Kamu menjawab benar ${score} dari ${total} soal (${percent}%).`;
+
+        if (percent === 100) {
+          title = "Sempurna! 🌈";
+          icon = "🏆";
+          extra =
+            "Wah, semua benar! Kamu sangat menguasai materi Bab 3 dan 4!";
+        } else if (percent >= 80) {
+          title = "Keren sekali! 💖";
+          icon = "🌟";
+          extra =
+            "Sedikit lagi sempurna. Kamu sudah sangat paham, pertahankan ya!";
+        } else if (percent >= 60) {
+          title = "Bagus! Terus berlatih! 💪";
+          icon = "✨";
+          extra =
+            "Kamu sudah cukup baik, coba ulangi lagi agar makin mahir.";
+        } else {
+          title = "Ayo semangat lagi! 🌱";
+          icon = "💡";
+          extra =
+            "Belum apa-apa kalau masih salah. Ulangi latihan dan baca pembahasan pelan-pelan.";
+        }
+      }
+
+      $("result-title").textContent = title;
+      $("result-extra").textContent = extra;
+      $("result-icon").textContent = icon;
+    }
+  </script>
+</body>
+</html>
